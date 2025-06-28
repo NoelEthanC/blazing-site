@@ -24,10 +24,16 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Resource } from "@/types";
+import { Link, router } from "@inertiajs/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ResourcesSection = () => {
+const ResourcesSection = ({
+    latest_resources,
+}: {
+    latest_resources: Resource[];
+}) => {
     const sectionRef = useRef<HTMLDivElement>(null);
     const titleRef = useRef<HTMLHeadingElement>(null);
     const featuredRef = useRef<HTMLDivElement>(null);
@@ -38,126 +44,149 @@ const ResourcesSection = () => {
     const [email, setEmail] = useState("");
     const { toast } = useToast();
 
-    const featuredResource = {
-        title: "Complete CRM Automation Suite",
-        category: "CRM Integration",
-        description:
-            "Full customer relationship management automation with lead scoring, email sequences, and pipeline management. Includes 15+ pre-built workflows and AI-powered lead qualification.",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-        isPaid: false,
-        isNew: true,
-        fileUrl: "#",
-    };
+    // const featuredResource = {
+    //     title: "Complete CRM Automation Suite",
+    //     category: "CRM Integration",
+    //     description:
+    //         "Full customer relationship management automation with lead scoring, email sequences, and pipeline management. Includes 15+ pre-built workflows and AI-powered lead qualification.",
+    //     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+    //     isPaid: false,
+    //     isNew: true,
+    //     fileUrl: "#",
+    // };
 
-    const resources = [
-        {
-            title: "Lead Generation Bot",
-            category: "Lead Generation",
-            description: "Automated lead capture and qualification system",
-            image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop",
-            icon: <Bot className="w-6 h-6 text-light-blue" />,
-            isPaid: false,
-            fileUrl: "#",
-        },
-        {
-            title: "Customer Onboarding Flow",
-            category: "Customer Success",
-            description: "Complete welcome series with progress tracking",
-            image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&h=400&fit=crop",
-            icon: <Workflow className="w-6 h-6 text-sunray" />,
-            isPaid: true,
-            fileUrl: "#",
-        },
-        {
-            title: "Social Media Scheduler",
-            category: "Marketing",
-            description: "Multi-platform content automation",
-            image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=400&fit=crop",
-            icon: <Calendar className="w-6 h-6 text-light-blue" />,
-            isPaid: false,
-            fileUrl: "#",
-        },
-        {
-            title: "Invoice Automation",
-            category: "Finance",
-            description: "Complete billing and payment reminders",
-            image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=400&fit=crop",
-            icon: <Zap className="w-6 h-6 text-sunray" />,
-            isPaid: true,
-            fileUrl: "#",
-        },
-        {
-            title: "Email Marketing Automation",
-            category: "Marketing",
-            description: "Advanced email sequences with triggers",
-            image: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=400&h=400&fit=crop",
-            icon: <Mail className="w-6 h-6 text-light-blue" />,
-            isPaid: false,
-            fileUrl: "#",
-        },
-        {
-            title: "Data Sync Workflow",
-            category: "Integration",
-            description: "Seamless data synchronization",
-            image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=400&h=400&fit=crop",
-            icon: <FileText className="w-6 h-6 text-sunray" />,
-            isPaid: true,
-            fileUrl: "#",
-        },
-    ];
+    const featuredResource = latest_resources[0];
+    //  || {
+    //     title: "Complete CRM Automation Suite",
+    //     category: "CRM Integration",
+    //     description:
+    //         "Full customer relationship management automation with lead scoring, email sequences, and pipeline management. Includes 15+ pre-built workflows and AI-powered lead qualification.",
+    //     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+    //     isPaid: false,
+    //     isNew: true,
+    //     fileUrl: "#",
+    // };
 
-    // useEffect(() => {
-    //     const ctx = gsap.context(() => {
-    //         const tl = gsap.timeline({
-    //             scrollTrigger: {
-    //                 trigger: sectionRef.current,
-    //                 start: "top 80%",
-    //                 end: "bottom 20%",
-    //                 toggleActions: "play none none reverse",
-    //             },
-    //         });
+    const resources = latest_resources.slice(1).map((resource) => ({
+        slug: resource.slug,
+        title: resource.title,
+        category: resource.category,
+        description: resource.description,
+        image: resource.thumbnail_path,
+        icon: <FileText className="w-6 h-6 text-light-blue" />, // Placeholder icon
+        isPaid: resource.resource_type === "pro",
+        fileUrl: resource.file_url,
+    }));
 
-    //         tl.from(titleRef.current, {
-    //             opacity: 0,
-    //             y: 50,
-    //             duration: 0.8,
-    //             ease: "power3.out",
-    //         })
-    //             .from(
-    //                 featuredRef.current,
-    //                 {
-    //                     opacity: 0,
-    //                     y: 30,
-    //                     duration: 0.6,
-    //                     ease: "power3.out",
-    //                 },
-    //                 "-=0.4"
-    //             )
-    //             .from(
-    //                 ".resource-card",
-    //                 {
-    //                     opacity: 10,
-    //                     y: 30,
-    //                     duration: 0.6,
-    //                     ease: "power3.out",
-    //                     stagger: 0.1,
-    //                 },
-    //                 "-=0.2"
-    //             )
-    //             .from(
-    //                 ctaRef.current,
-    //                 {
-    //                     opacity: 0,
-    //                     y: 20,
-    //                     duration: 0.6,
-    //                     ease: "power3.out",
-    //                 },
-    //                 "-=0.3"
-    //             );
-    //     }, sectionRef);
+    // const resources = [
+    //     {
+    //         title: "Lead Generation Bot",
+    //         category: "Lead Generation",
+    //         description: "Automated lead capture and qualification system",
+    //         image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop",
+    //         icon: <Bot className="w-6 h-6 text-light-blue" />,
+    //         isPaid: false,
+    //         fileUrl: "#",
+    //     },
+    //     {
+    //         title: "Customer Onboarding Flow",
+    //         category: "Customer Success",
+    //         description: "Complete welcome series with progress tracking",
+    //         image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&h=400&fit=crop",
+    //         icon: <Workflow className="w-6 h-6 text-sunray" />,
+    //         isPaid: true,
+    //         fileUrl: "#",
+    //     },
+    //     {
+    //         title: "Social Media Scheduler",
+    //         category: "Marketing",
+    //         description: "Multi-platform content automation",
+    //         image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=400&fit=crop",
+    //         icon: <Calendar className="w-6 h-6 text-light-blue" />,
+    //         isPaid: false,
+    //         fileUrl: "#",
+    //     },
+    //     {
+    //         title: "Invoice Automation",
+    //         category: "Finance",
+    //         description: "Complete billing and payment reminders",
+    //         image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=400&fit=crop",
+    //         icon: <Zap className="w-6 h-6 text-sunray" />,
+    //         isPaid: true,
+    //         fileUrl: "#",
+    //     },
+    //     {
+    //         title: "Email Marketing Automation",
+    //         category: "Marketing",
+    //         description: "Advanced email sequences with triggers",
+    //         image: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=400&h=400&fit=crop",
+    //         icon: <Mail className="w-6 h-6 text-light-blue" />,
+    //         isPaid: false,
+    //         fileUrl: "#",
+    //     },
+    //     {
+    //         title: "Data Sync Workflow",
+    //         category: "Integration",
+    //         description: "Seamless data synchronization",
+    //         image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=400&h=400&fit=crop",
+    //         icon: <FileText className="w-6 h-6 text-sunray" />,
+    //         isPaid: true,
+    //         fileUrl: "#",
+    //     },
+    // ];
 
-    //     return () => ctx.revert();
-    // }, []);
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse",
+                },
+            });
+
+            tl.from(titleRef.current, {
+                opacity: 0,
+                y: 50,
+                duration: 0.8,
+                ease: "power3.out",
+            })
+                .from(
+                    featuredRef.current,
+                    {
+                        opacity: 0,
+                        y: 30,
+                        duration: 0.6,
+                        ease: "power3.out",
+                    },
+                    "-=0.4"
+                )
+                .from(
+                    ".resource-card",
+                    {
+                        opacity: 10,
+                        y: 30,
+                        duration: 0.6,
+                        ease: "power3.out",
+                        stagger: 0.1,
+                    },
+                    "-=0.2"
+                )
+                .from(
+                    ctaRef.current,
+                    {
+                        opacity: 0,
+                        y: 20,
+                        duration: 0.6,
+                        ease: "power3.out",
+                    },
+                    "-=0.3"
+                );
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
 
     const handleDownloadClick = (resource: any) => {
         setSelectedResource(resource);
@@ -165,6 +194,7 @@ const ResourcesSection = () => {
     };
 
     const handleDownloadNow = () => {
+        // send it to the server or handle the download logic
         console.log("Downloading:", selectedResource.title);
         toast({
             title: "Download Started",
@@ -175,6 +205,7 @@ const ResourcesSection = () => {
     };
 
     const handleSendEmail = () => {
+        // send it to the server or handle the email logic
         if (!email) {
             toast({
                 title: "Email Required",
@@ -230,7 +261,7 @@ const ResourcesSection = () => {
                                         variant="outline"
                                         className="border-gray-text/30 text-slate-text"
                                     >
-                                        {featuredResource.category}
+                                        {featuredResource.category.name}
                                     </Badge>
                                     <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
                                         Free
@@ -247,8 +278,11 @@ const ResourcesSection = () => {
                                 <div className="flex gap-3">
                                     <Button
                                         onClick={() =>
-                                            handleDownloadClick(
-                                                featuredResource
+                                            router.visit(
+                                                route(
+                                                    "resources.show",
+                                                    featuredResource.slug
+                                                )
                                             )
                                         }
                                         className="gradient-upstream text-white font-work-sans font-semibold"
@@ -268,7 +302,7 @@ const ResourcesSection = () => {
                             <div className="relative">
                                 <div className="aspect-video rounded-lg overflow-hidden">
                                     <img
-                                        src={featuredResource.image}
+                                        src={`/storage/${featuredResource.thumbnail_path}`}
                                         alt={featuredResource.title}
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                     />
@@ -291,7 +325,7 @@ const ResourcesSection = () => {
                             {/* Image */}
                             <div className="aspect-square relative overflow-hidden">
                                 <img
-                                    src={resource.image}
+                                    src={`/storage/${resource.image}`}
                                     alt={resource.title}
                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                 />
@@ -303,7 +337,7 @@ const ResourcesSection = () => {
                                         variant="outline"
                                         className="text-xs bg-black/50 border-white/20 text-white backdrop-blur-sm"
                                     >
-                                        {resource.category}
+                                        {resource.category.name}
                                     </Badge>
                                     <Badge
                                         className={`text-xs ${
@@ -321,7 +355,11 @@ const ResourcesSection = () => {
                                     <Button
                                         size="sm"
                                         onClick={() =>
-                                            handleDownloadClick(resource)
+                                            router.visit(
+                                                route("resources.show", {
+                                                    resource: resource.slug,
+                                                })
+                                            )
                                         }
                                         className="bg-light-blue hover:bg-light-blue/80 text-white font-work-sans"
                                     >
@@ -343,7 +381,12 @@ const ResourcesSection = () => {
                                     <Button
                                         size="sm"
                                         onClick={() =>
-                                            handleDownloadClick(resource)
+                                            router.visit(
+                                                route(
+                                                    "resources.show",
+                                                    resource.slug
+                                                )
+                                            )
                                         }
                                         className="flex-1 bg-light-blue/20 hover:bg-light-blue text-light-blue hover:text-white text-xs border border-light-blue/30"
                                     >
@@ -364,7 +407,10 @@ const ResourcesSection = () => {
 
                 {/* View More CTA */}
                 <div ref={ctaRef} className="text-center">
-                    <Button className="gradient-upstream text-white font-work-sans font-semibold px-8 py-4 rounded-full hover-glow">
+                    <Button
+                        onClick={() => router.visit(route("resources.index"))}
+                        className="gradient-upstream text-white font-work-sans font-semibold px-8 py-4 rounded-full hover-glow"
+                    >
                         View More Templates
                         <ExternalLink className="ml-2 w-4 h-4" />
                     </Button>
@@ -388,7 +434,7 @@ const ResourcesSection = () => {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="your@email.com"
-                                className="bg-background/50 border-gray-text/30 text-white"
+                                className="bg-background/50 border-gray-text/30 text-midnight-blue"
                             />
                         </div>
                         <div className="flex gap-3">

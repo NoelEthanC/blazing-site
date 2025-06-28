@@ -11,3 +11,16 @@ export const handleLinkClick = (link: string) => {
     // change the url to the new # link
     // window.history.pushState(null, "", `#${link}`);
 };
+
+export function formatDateTime(utcDateString: string): string {
+    const date = new Date(utcDateString);
+    return date.toLocaleString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+    });
+}

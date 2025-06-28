@@ -1,5 +1,5 @@
-import { PageProps } from "@/types";
-import { Head, Link } from "@inertiajs/react";
+import { PageProps, Resource } from "@/types";
+import { Head, Link, usePage } from "@inertiajs/react";
 import Navbar from "@/Components/landing-page/Navbar";
 import Hero from "@/Components/landing-page/Hero";
 import ToolsSection from "@/Components/landing-page/ToolsSection";
@@ -19,17 +19,8 @@ export default function Home({
     laravelVersion,
     phpVersion,
 }: PageProps<{ laravelVersion: string; phpVersion: string }>) {
-    const handleImageError = () => {
-        document
-            .getElementById("screenshot-container")
-            ?.classList.add("!hidden");
-        document.getElementById("docs-card")?.classList.add("!row-span-1");
-        document
-            .getElementById("docs-card-content")
-            ?.classList.add("!flex-row");
-        document.getElementById("background")?.classList.add("!hidden");
-    };
-
+    const { props } = usePage<PageProps>();
+    console.log("props", props);
     return (
         <>
             <Head title="Home" />
@@ -38,7 +29,9 @@ export default function Home({
                 <ToolsMarquee />
                 <ToolsSection /> {/*this is services section */}
                 <WatchUsBuildSection videoUrl="https://www.youtube.com/embed?v=dQw4w9WgXcQ" />
-                <ResourcesSection />
+                <ResourcesSection
+                    latest_resources={props.resources as Resource[]}
+                />
                 <BenefitsSection />
                 <ProcessSection />
                 <ContactSection />

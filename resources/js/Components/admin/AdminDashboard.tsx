@@ -3,11 +3,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/Components/ui/tabs";
 import { AnalyticsOverview } from "./AnalyticsOverview";
 import { ContentManager } from "./ContentManager";
 import { ToolsManager } from "./ToolsManager";
-import { ResourcesManager } from "./ResourceManager";
+import ResourcesManager from "./ResourceManager";
 import { BlogManager } from "./BlogManager";
 import { LeadsManager } from "./LaedsManager";
+import { router, Deferred } from "@inertiajs/react";
 
-export function AdminDashboard() {
+export function AdminDashboard({
+    overview,
+    resources,
+    leads,
+    tools,
+    blogPosts,
+    reloadTab,
+}: any) {
     return (
         <div className="min-h-screen bg-[#09111f] p-6">
             <div className="max-w-7xl mx-auto">
@@ -20,7 +28,16 @@ export function AdminDashboard() {
                     </p>
                 </div>
 
-                <Tabs defaultValue="overview" className="space-y-6">
+                <Tabs
+                    defaultValue="overview"
+                    onValueChange={(tab: string) => {
+                        router.reload({
+                            only: [tab, "categories"],
+                            data: { tab },
+                        });
+                    }}
+                    className="space-y-6"
+                >
                     <TabsList className="bg-white/5 border-white/10">
                         <TabsTrigger
                             value="overview"
@@ -61,26 +78,51 @@ export function AdminDashboard() {
                     </TabsList>
 
                     <TabsContent value="overview">
-                        <AnalyticsOverview />
+                        <AnalyticsOverview data={overview} />
                     </TabsContent>
 
                     <TabsContent value="content">
-                        <ContentManager />
+                        <Deferred
+                            data={["content"]}
+                            fallback={<div>Loading content...</div>}
+                        >
+                            <ContentManager />
+                        </Deferred>
                     </TabsContent>
 
                     <TabsContent value="leads">
-                        <LeadsManager />
+                        <Deferred
+                            data={["leads"]}
+                            fallback={<div>Loading leads...</div>}
+                        >
+                            <LeadsManager />
+                        </Deferred>
                     </TabsContent>
                     <TabsContent value="tools">
-                        <ToolsManager />
+                        <Deferred
+                            data={["tools"]}
+                            fallback={<div>Loading tools...</div>}
+                        >
+                            <ToolsManager />
+                        </Deferred>
                     </TabsContent>
 
                     <TabsContent value="resources">
-                        <ResourcesManager />
+                        <Deferred
+                            data={["resources"]}
+                            fallback={<div>Loading resources...</div>}
+                        >
+                            <ResourcesManager />
+                        </Deferred>
                     </TabsContent>
 
                     <TabsContent value="blog">
-                        <BlogManager />
+                        <Deferred
+                            data={["blog"]}
+                            fallback={<div>Loading blog...</div>}
+                        >
+                            <BlogManager />
+                        </Deferred>
                     </TabsContent>
                 </Tabs>
             </div>

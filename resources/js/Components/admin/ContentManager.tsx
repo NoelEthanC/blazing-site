@@ -14,7 +14,7 @@ interface ContentSection {
     content: any;
 }
 
-export function ContentManager() {
+export function ContentManager({ content }: { content?: any }) {
     const [heroContent, setHeroContent] = useState({
         headline: "",
         subheadline: "",

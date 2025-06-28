@@ -3,43 +3,33 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/Components/ui/card";
 import { Download, Users, FileText, Eye } from "lucide-react";
+import { formatDateTime } from "@/lib/utils";
 
 interface AnalyticsData {
     totalDownloads: number;
-    totalEmails: number;
+    emailSubmissions: number;
     totalPosts: number;
     totalViews: number;
     recentDownloads: Array<{
-        resource_title: string;
+        title: string;
         email: string;
-        submitted_at: string;
+        created_at: string;
     }>;
 }
 
-export function AnalyticsOverview() {
+export function AnalyticsOverview({ data }: { data: any }) {
     const [analytics, setAnalytics] = useState<AnalyticsData>({
         totalDownloads: 0,
-        totalEmails: 0,
+        emailSubmissions: 0,
         totalPosts: 0,
         totalViews: 0,
         recentDownloads: [],
     });
 
+    console.log("data", data);
     useEffect(() => {
-        fetchAnalytics();
+        setAnalytics(data);
     }, []);
-
-    const fetchAnalytics = async () => {
-        try {
-            const response = await fetch("/api/admin/analytics");
-            if (response.ok) {
-                const data = await response.json();
-                setAnalytics(data);
-            }
-        } catch (error) {
-            console.error("Error fetching analytics:", error);
-        }
-    };
 
     return (
         <div className="space-y-6">
@@ -70,7 +60,7 @@ export function AnalyticsOverview() {
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold text-white">
-                            {analytics.totalEmails}
+                            {analytics.emailSubmissions}
                         </div>
                         <p className="text-xs text-[#cbd5e1]">
                             Unique email addresses
@@ -81,13 +71,13 @@ export function AnalyticsOverview() {
                 <Card className="bg-white/5 border-white/10">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium text-white">
-                            Blog Posts
+                            Total Templates
                         </CardTitle>
                         <FileText className="h-4 w-4 text-[#3f79ff]" />
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold text-white">
-                            {analytics.totalPosts}
+                            {analytics.totalResources}
                         </div>
                         <p className="text-xs text-[#cbd5e1]">
                             Published articles
@@ -98,13 +88,13 @@ export function AnalyticsOverview() {
                 <Card className="bg-white/5 border-white/10">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium text-white">
-                            Page Views
+                            Bookings
                         </CardTitle>
                         <Eye className="h-4 w-4 text-[#3f79ff]" />
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold text-white">
-                            {analytics.totalViews}
+                            {analytics.bookings}
                         </div>
                         <p className="text-xs text-[#cbd5e1]">This month</p>
                     </CardContent>
@@ -126,16 +116,14 @@ export function AnalyticsOverview() {
                             >
                                 <div>
                                     <p className="text-white font-medium">
-                                        {download.resource_title}
+                                        {download.title}
                                     </p>
                                     <p className="text-[#cbd5e1] text-sm">
                                         {download.email}
                                     </p>
                                 </div>
                                 <div className="text-[#cbd5e1] text-sm">
-                                    {new Date(
-                                        download.submitted_at
-                                    ).toLocaleDateString()}
+                                    {formatDateTime(download.created_at)}
                                 </div>
                             </div>
                         ))}
