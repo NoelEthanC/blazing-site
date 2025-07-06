@@ -5,7 +5,11 @@ import {
     BadgeDollarSign,
     Brain,
     Database,
+    Globe,
+    LayoutDashboard,
     MonitorCog,
+    Plug,
+    ScanSearch,
     ShieldAlert,
     ShieldCheck,
     Workflow,
@@ -16,47 +20,46 @@ const ToolsSection = () => {
         {
             name: "Chatbots & AI Agents",
             description:
-                "We build chatbots and AI agents that that integrates well with your systems",
+                "We develop task-specific AI agents and conversational chatbots that integrate seamlessly with your tools, APIs, and workflows.",
             icon: Brain,
         },
         {
-            name: "CRM & Sales Automation",
+            name: "Business Websites",
             description:
-                "We automate your sales pipeline so you focus on closing, not chasing.",
-            icon: BadgeDollarSign,
+                "We design and build responsive, fast, and SEO-ready websites that communicate your brand and convert visitors to clients.",
+            icon: Globe,
         },
         {
-            name: "AI-Powered Business Systems",
+            name: "Automated AI Workflows",
             description:
-                "Inject AI into your processes to automate decisions, replies, and insights.",
-            icon: MonitorCog,
-        },
-        {
-            name: "Custom Workflow Automation",
-            description:
-                "We design and build no-code automation workflows that save you hours every week.",
+                "We design end-to-end automations using tools like n8n to streamline repetitive tasks, connect apps, and scale operations efficiently.",
             icon: Workflow,
         },
         {
-            name: "Airtable System Architecture",
+            name: "AI-Powered Data Systems",
             description:
-                "Turn Airtable into a powerful backend with smart automations",
-            icon: Database,
+                "We create intelligent systems that use AI for document processing, contextual search (RAG), classification, and decision support.",
+            icon: ScanSearch,
         },
         {
-            name: " Audits & Strategy Calls",
+            name: "Custom Web Applications",
             description:
-                "We audit your processes and identify the best places to save time with automation",
-            icon: ShieldAlert,
+                "We build scalable web apps using Laravel, React, and Supabase — tailored for dashboards, portals, or SaaS platforms.",
+            icon: LayoutDashboard,
+        },
+        {
+            name: "API Integrations",
+            description:
+                "We connect third-party services and internal APIs to your app with secure, well-documented, and scalable integration logic.",
+            icon: Plug,
         },
     ];
-
     return (
         <section id="services" className="py-28 px-4">
             <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">
                     <h2 className="font-sora font-bold text-4xl md:text-5xl text-white mb-6">
-                        <span className="gradient-text">What We</span> Automate
+                        <span className="gradient-text">What We</span> Build
                     </h2>
                     <p className="font-inter text-xl text-slate-text max-w-3xl mx-auto">
                         We're experts with the world's most powerful automation

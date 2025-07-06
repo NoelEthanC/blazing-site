@@ -14,6 +14,7 @@ Route::get('/', [HomepageController::class, 'index'])->name('home');
 Route::get('/resources/{resource:slug}', [ResourceController::class, 'show'])->name('resources.show');
 Route::get('/resources', [ResourceController::class, 'index'])->name('resources.index');
 Route::patch('/resources/{resource}/download', [ResourceController::class, 'download'])->name('resources.download');
+Route::post('/send-form-email', [HomepageController::class, 'sendFormEmail'])->name('home.sendEmail');
 
 
 

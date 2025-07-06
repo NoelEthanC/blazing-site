@@ -1,6 +1,7 @@
 import { Link } from "@inertiajs/react";
 
 export default function ResourceCard({ resource }: any) {
+    console.log("resource", resource);
     return (
         <div className="bg-[#0e172a] rounded-xl shadow-lg hover:shadow-2xl hover:scale-[1.01] transition-all duration-300 overflow-hidden border border-[#1a2435]">
             <div className="aspect-w-16 aspect-h-9">
@@ -92,10 +93,10 @@ export default function ResourceCard({ resource }: any) {
                         Download
                     </Link>
 
-                    {!resource.youtube_url ? (
+                    {resource.video_url ? (
                         <a
-                            href={`https://www.youtube.com/watch?v=IeZbk2-2obE`}
-                            // href={resource.youtube_url}
+                            // href={`https://www.youtube.com/watch?v=IeZbk2-2obE`}
+                            href={resource.youtube_url}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-semibold rounded-md text-[#09111f] bg-gradient-to-r from-[#ca6678] to-[#fcbf5b] hover:opacity-90 transition duration-200"

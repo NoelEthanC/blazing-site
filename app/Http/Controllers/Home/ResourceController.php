@@ -150,7 +150,7 @@ class ResourceController extends Controller
     {
         try {
             // Queue email job
-            // SendResourceEmail::dispatch($email, $resource);
+            SendResourceEmail::dispatch($email, $resource);
 
             return redirect()->back()->with([
                 'success' => true,

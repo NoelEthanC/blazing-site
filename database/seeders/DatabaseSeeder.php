@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Resource;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -24,7 +25,20 @@ class DatabaseSeeder extends Seeder
         // // Uncomment the following line to seed the database with resources
         // Resource::factory(50)->create();
         // // Uncomment the following line to seed the database with categories
-        \App\Models\Category::factory(5)->create();
+        // Category::factory(5)->create();
+        collect([
+            'Automation Workflows',
+            'AI Agent Templates',
+            'Web Component Templates',
+            'AI + Web',
+            'Landing Page Templates',
+            'API Integration Blueprints',
+            'Business Use Cases',
+        ])->each(function ($name) {
+            Category::factory()
+                ->withName($name)
+                ->create();
+        });
         // // Uncomment the following line to seed the database with leads
         // \App\Models\Lead::factory(20)->create();
         // // Uncomment the following line to seed the database with resource downloads

@@ -13,17 +13,35 @@ import WatchUsBuildSection from "@/Components/landing-page/WatchUsBuild";
 import ResourcesSection from "@/Components/landing-page/ResourcesSection";
 import Guest from "@/Layouts/GuestLayout";
 import GuestLayout from "@/Layouts/GuestLayout";
+import { useEffect } from "react";
+import { useToast } from "@/hooks/use-toast";
 
-export default function Home({
-    auth,
-    laravelVersion,
-    phpVersion,
-}: PageProps<{ laravelVersion: string; phpVersion: string }>) {
+export default function Home() {
     const { props } = usePage<PageProps>();
-    console.log("props", props);
+
+    // @ts-ignore
+    const { auth, flash } = props;
+    const { toast } = useToast();
+
+    useEffect(() => {
+        if (flash?.message) {
+            toast({
+                title: `${flash?.message}`,
+            });
+            flash.message = null; // Clear flash after showing
+        }
+    }, [flash, toast]);
+
     return (
         <>
-            <Head title="Home" />
+            <Head>
+                <title>Home</title>
+                <meta
+                    name="description"
+                    content="Blazing Automations helps you achieve your goals with smart AI agents, automation workflows, and custom web development solutions. Build the systems your business needs to grow."
+                />
+            </Head>
+
             <div className="min-h-screen bg-midnight-blue overflow-hidden">
                 <Hero />
                 <ToolsMarquee />

@@ -7,13 +7,23 @@ import SitePageLayout from "@/Layouts/SitePageLayout";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { PenTool } from "lucide-react";
 import RelatedResources from "@/Components/RelatedResources";
+import { trackResourcesDownload } from "@/events";
 
 export default function Show({ resource, relatedResources, breadcrumbs }: any) {
     const [showModal, setShowModal] = useState(false);
 
     return (
         <SitePageLayout>
-            <Head title={resource.title} />
+            <Head>
+                <title>{resource.title} </title>
+                <meta
+                    name="description"
+                    content={
+                        resource.excerpt ||
+                        "Download thos tempalte and watch this detailed guide on building AI-powered workflows, automations, and web tools that help your business grow."
+                    }
+                />
+            </Head>
 
             <div className="min-h-screen bg-midnight-blue py-32">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -107,7 +117,7 @@ export default function Show({ resource, relatedResources, breadcrumbs }: any) {
                                                 </svg>
                                                 File Type:{" "}
                                                 {resource.file_type?.toUpperCase() ||
-                                                    "PDF"}
+                                                    "JSON(zipped)"}
                                             </div>
                                             <div className="flex items-center text-sm text-gray-500">
                                                 <PenTool className="w-4 h-4 mr-2" />
@@ -159,9 +169,12 @@ export default function Show({ resource, relatedResources, breadcrumbs }: any) {
                                         <div className="flex flex-col gap-3 mt-4">
                                             {/* Primary: Download */}
                                             <button
-                                                onClick={() =>
-                                                    setShowModal(true)
-                                                }
+                                                onClick={() => {
+                                                    trackResourcesDownload(
+                                                        resource.title
+                                                    );
+                                                    setShowModal(true);
+                                                }}
                                                 className="w-full bg-[#3f79ff] hover:bg-[#3468db] text-white font-semibold py-3 px-5 rounded-lg flex items-center justify-center transition duration-200"
                                             >
                                                 <svg
@@ -183,7 +196,7 @@ export default function Show({ resource, relatedResources, breadcrumbs }: any) {
                                             {/* Secondary: Watch Guide */}
                                             {!resource.youtube_url && (
                                                 <a
-                                                    href={resource.youtube_url}
+                                                    href={resource.video_url}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="w-full border border-[#3f79ff] text-[#3f79ff] font-medium py-3 px-5 rounded-lg flex items-center justify-center hover:bg-[#3f79ff]/10 transition duration-200"

@@ -243,12 +243,12 @@ const Hero = () => {
                     ref={titleRef}
                     className="font-sora font-bold text-4xl lg:w-2/3 text-center  mx-auto md:text-balance md:text-6xl lg:text-7xl leading-tight mb-6"
                 >
-                    <span className="gradient-text">Blazing</span>{" "}
-                    <span className="text-white">Fast Automations </span>
+                    <span className="gradient-text">Your Ideas</span>{" "}
+                    <span className="text-white">Into Solutions </span>
                     {/* <br /> */}
-                    <span className="text-white">For your </span> <br />
+                    <span className="text-white">that work </span> <br />
                     {/* <span className="text-white">Blaze with</span>{" "} */}
-                    <span className="gradient-text">Business</span>
+                    <span className="gradient-text">for you</span>
                 </h1>
 
                 {/* Subtitle */}
@@ -257,11 +257,9 @@ const Hero = () => {
                         From Manual to Magical – With AI & No-Code
                     </p> */}
                     <p className="font-inter text-lg text-gray-text max-w-2xl mx-auto">
-                        Let's turn your repetitive tasks into smart AI-driven
-                        workflows using no-code tools like{" "}
-                        <span className="font-bold">
-                            n8n, Make, and Zapier!
-                        </span>
+                        From <strong>AI</strong> automations to stunning
+                        websites that work for you daily
+                        <span className="font-bold"></span>
                     </p>
                 </div>
 
@@ -295,7 +293,7 @@ const Hero = () => {
                 </div>
 
                 {/* Stats */}
-                <div
+                {/* <div
                     ref={statsRef}
                     className=" hidden lg:flex  bottom-14 lg:absolute lg:right-0 justify-center"
                 >
@@ -307,7 +305,7 @@ const Hero = () => {
                             Automations & Chatbots
                         </div>
                     </div>
-                </div>
+                </div> */}
                 {/* <ToolsMarquee /> */}
             </div>
         </section>

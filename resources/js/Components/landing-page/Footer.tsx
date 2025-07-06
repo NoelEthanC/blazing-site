@@ -33,8 +33,8 @@ const Footer = () => {
                             Blazing Automations
                         </h3>
                         <p className="text-slate-text">
-                            Transforming businesses with AI automation and
-                            no-code solutions.
+                            Transforming businesses with AI automation and web
+                            solutions that work for you.
                         </p>
                     </div>
 

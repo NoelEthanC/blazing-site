@@ -108,7 +108,7 @@ export default function ResourceForm() {
             ? "admin.resources.update"
             : "admin.resources.store";
         // const method = editingResource ? post : post;
-        post(route(routeName, editingResource?.id), {
+        post(route(routeName, editingResource?.slug), {
             forceFormData: true,
             onSuccess: () => {
                 // Reset form state after successful submission
@@ -376,6 +376,43 @@ const ResourceFormContent = ({
                 {errors.file_path && (
                     <p className="text-red-400 text-sm">{errors.file_path}</p>
                 )}
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+                <div>
+                    <Label htmlFor="guide_url" className="text-white">
+                        Guide URL (PDF or Notion)
+                    </Label>
+                    <Input
+                        id="guide_url"
+                        value={formData.guide_url}
+                        onChange={(e) => setData("guide_url", e.target.value)}
+                        className="bg-white/5 border-white/10 text-white"
+                        placeholder="https://..."
+                    />
+                    {errors.guide_url && (
+                        <p className="text-red-400 text-sm">
+                            {errors.guide_url}
+                        </p>
+                    )}
+                </div>
+                <div>
+                    <Label htmlFor="video_url" className="text-white">
+                        Video URL (Optional)
+                    </Label>
+                    <Input
+                        id="video_url"
+                        value={formData.video_url}
+                        onChange={(e) => setData("video_url", e.target.value)}
+                        className="bg-white/5 border-white/10 text-white"
+                        placeholder="YouTube or Vimeo URL"
+                    />
+                    {errors.video_url && (
+                        <p className="text-red-400 text-sm">
+                            {errors.video_url}
+                        </p>
+                    )}
+                </div>
             </div>
 
             {/* template thumbnail */}

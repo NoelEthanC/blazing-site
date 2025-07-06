@@ -2,14 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/Components/ui/button";
 import { Youtube, Play } from "lucide-react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import YouTube from "react-youtube";
 import { Link } from "@inertiajs/react";
 
-gsap.registerPlugin(ScrollTrigger);
-
 interface WatchUsBuildSectionProps {
-    videoUrl: string; // Accepts full YouTube video URL
+    videoUrl: string;
 }
 
 const WatchUsBuildSection = ({ videoUrl }: WatchUsBuildSectionProps) => {
@@ -30,6 +27,32 @@ const WatchUsBuildSection = ({ videoUrl }: WatchUsBuildSectionProps) => {
     };
 
     const embedUrl = getYouTubeEmbedUrl(videoUrl);
+
+    useEffect(() => {
+        // Only run on the client
+        if (typeof window !== "undefined") {
+            // Dynamically import ScrollTrigger for SSR safety
+            import("gsap/ScrollTrigger").then((mod) => {
+                const ScrollTrigger = mod.default || mod.ScrollTrigger;
+
+                gsap.registerPlugin(ScrollTrigger);
+
+                // You can add your animations here
+                gsap.from(titleRef.current, {
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top 80%",
+                        toggleActions: "play none none none",
+                    },
+                    y: 40,
+                    opacity: 0,
+                    duration: 1,
+                });
+
+                ScrollTrigger.refresh();
+            });
+        }
+    }, []);
 
     return (
         <section
@@ -71,12 +94,12 @@ const WatchUsBuildSection = ({ videoUrl }: WatchUsBuildSectionProps) => {
                                 href="https://www.youtube.com/@BlazingAutomations"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="gradient-upstream text-center text-white font-work-sans flex font-semibold px-8 py-4 rounded-full hover-glow group transition-all duration-300"
+                                className="gradient-upstream text-center text-white font-work-sans flex font-semibold px-8 py-4 w-fit text-xl  rounded-full hover-glow group transition-all duration-300 items-center"
                             >
                                 <Youtube className="mr-2 w-5 h-5" />
                                 Subscribe To Our Channel
-                                <span className="ml-2 bg-white/20 px-3 py-1 rounded-full text-sm">
-                                    Free
+                                <span className="ml-2 bg-white/20 px-3 py-1 rounded-full text-sm text-green-700">
+                                    FREE
                                 </span>
                             </a>
                         </div>
@@ -85,30 +108,12 @@ const WatchUsBuildSection = ({ videoUrl }: WatchUsBuildSectionProps) => {
                     {/* Video Content */}
                     <div ref={videoRef} className="relative">
                         {!playVideo ? (
-                            //  <iframe
-                            //         src={embedUrl}
-                            //         className="w-full h-full"
-                            //         title="YouTube Video"
-                            //         frameBorder="0"
-                            //         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            //         allowFullScreen
-                            //     ></iframe>
-
                             <div
                                 onClick={() => setPlayVideo(true)}
                                 className="relative bg-card/20 backdrop-blur-sm border border-gray-text/20 rounded-xl overflow-hidden group cursor-pointer hover:border-light-blue/50 transition-all duration-300"
                             >
-                                {/* <div className="aspect-video bg-gradient-to-br from-light-blue/20 to-sunray/20 flex items-center justify-center">
-                                    <div className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                        <Play
-                                            className="w-8 h-8 text-white ml-1"
-                                            fill="white"
-                                        />
-                                    </div>
-                                </div>
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div> */}
                                 <YouTube
-                                    videoId={"GAtrG74sl1E"}
+                                    videoId={"9tvUSxXrKnA"}
                                     options={{
                                         height: "400",
                                         width: "640",

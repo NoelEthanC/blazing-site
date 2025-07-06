@@ -20,14 +20,13 @@ import {
     Calendar,
     ExternalLink,
     Star,
+    Video,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Resource } from "@/types";
 import { Link, router } from "@inertiajs/react";
-
-gsap.registerPlugin(ScrollTrigger);
+import ResourceGrid from "./ResourceGrid";
 
 const ResourcesSection = ({
     latest_resources,
@@ -136,97 +135,68 @@ const ResourcesSection = ({
     // ];
 
     useEffect(() => {
-        const ctx = gsap.context(() => {
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 80%",
-                    end: "bottom 20%",
-                    toggleActions: "play none none reverse",
-                },
+        if (typeof window !== "undefined") {
+            import("gsap/ScrollTrigger").then((mod) => {
+                const ScrollTrigger = mod.default || mod.ScrollTrigger;
+                gsap.registerPlugin(ScrollTrigger);
+
+                const ctx = gsap.context(() => {
+                    const tl = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: sectionRef.current,
+                            start: "top 80%",
+                            end: "bottom 20%",
+                            toggleActions: "play none none reverse",
+                        },
+                    });
+
+                    tl.from(titleRef.current, {
+                        opacity: 0,
+                        y: 50,
+                        duration: 0.8,
+                        ease: "power3.out",
+                    })
+                        .from(
+                            featuredRef.current,
+                            {
+                                opacity: 0,
+                                y: 30,
+                                duration: 0.6,
+                                ease: "power3.out",
+                            },
+                            "-=0.4"
+                        )
+                        .from(
+                            ".resource-card",
+                            {
+                                opacity: 0,
+                                y: 30,
+                                duration: 0.6,
+                                ease: "power3.out",
+                                stagger: 0.1,
+                            },
+                            "-=0.2"
+                        )
+                        .from(
+                            ctaRef.current,
+                            {
+                                opacity: 0,
+                                y: 20,
+                                duration: 0.6,
+                                ease: "power3.out",
+                            },
+                            "-=0.3"
+                        );
+                }, sectionRef);
+
+                return () => ctx.revert();
             });
-
-            tl.from(titleRef.current, {
-                opacity: 0,
-                y: 50,
-                duration: 0.8,
-                ease: "power3.out",
-            })
-                .from(
-                    featuredRef.current,
-                    {
-                        opacity: 0,
-                        y: 30,
-                        duration: 0.6,
-                        ease: "power3.out",
-                    },
-                    "-=0.4"
-                )
-                .from(
-                    ".resource-card",
-                    {
-                        opacity: 10,
-                        y: 30,
-                        duration: 0.6,
-                        ease: "power3.out",
-                        stagger: 0.1,
-                    },
-                    "-=0.2"
-                )
-                .from(
-                    ctaRef.current,
-                    {
-                        opacity: 0,
-                        y: 20,
-                        duration: 0.6,
-                        ease: "power3.out",
-                    },
-                    "-=0.3"
-                );
-        }, sectionRef);
-
-        return () => ctx.revert();
+        }
     }, []);
 
     const handleDownloadClick = (resource: any) => {
         setSelectedResource(resource);
         setIsModalOpen(true);
-    };
-
-    const handleDownloadNow = () => {
-        // send it to the server or handle the download logic
-        console.log("Downloading:", selectedResource.title);
-        toast({
-            title: "Download Started",
-            description: `${selectedResource.title} is being downloaded.`,
-        });
-        setIsModalOpen(false);
-        setEmail("");
-    };
-
-    const handleSendEmail = () => {
-        // send it to the server or handle the email logic
-        if (!email) {
-            toast({
-                title: "Email Required",
-                description: "Please enter your email address.",
-                variant: "destructive",
-            });
-            return;
-        }
-
-        console.log(
-            "Sending to email:",
-            email,
-            "Resource:",
-            selectedResource.title
-        );
-        toast({
-            title: "Sent to Email",
-            description: `${selectedResource.title} has been sent to ${email}`,
-        });
-        setIsModalOpen(false);
-        setEmail("");
     };
 
     return (
@@ -294,8 +264,13 @@ const ResourcesSection = ({
                                         variant="outline"
                                         className="border-light-blue text-light-blue hover:bg-light-blue hover:text-white"
                                     >
-                                        <ExternalLink className="mr-2 w-4 h-4" />
-                                        View Details
+                                        <a
+                                            href={`#`}
+                                            className="flex items-center"
+                                        >
+                                            <Video className="mr-2 w-4 h-4" />
+                                            Watch Setup Guide
+                                        </a>
                                     </Button>
                                 </div>
                             </div>
@@ -313,97 +288,7 @@ const ResourcesSection = ({
                 </div>
 
                 {/* Resource Grid */}
-                <div
-                    ref={cardsRef}
-                    className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12"
-                >
-                    {resources.map((resource, index) => (
-                        <Card
-                            key={resource.title}
-                            className="resource-card relative bg-light-blue/25 backdrop-blur-sm border border-gray-text/20 overflow-hidden hover:border-light-blue/50 transition-all duration-300 hover:scale-105 group cursor-pointer"
-                        >
-                            {/* Image */}
-                            <div className="aspect-square relative overflow-hidden">
-                                <img
-                                    src={`/storage/${resource.image}`}
-                                    alt={resource.title}
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-
-                                {/* Badges */}
-                                <div className="absolute top-3 left-3 flex gap-2">
-                                    <Badge
-                                        variant="outline"
-                                        className="text-xs bg-black/50 border-white/20 text-white backdrop-blur-sm"
-                                    >
-                                        {resource.category.name}
-                                    </Badge>
-                                    <Badge
-                                        className={`text-xs ${
-                                            resource.isPaid
-                                                ? "bg-sunray/20 text-sunray border-sunray/30"
-                                                : "bg-green-500/20 text-green-400 border-green-500/30"
-                                        }`}
-                                    >
-                                        {resource.isPaid ? "Pro" : "Free"}
-                                    </Badge>
-                                </div>
-
-                                {/* Download Button Overlay */}
-                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                    <Button
-                                        size="sm"
-                                        onClick={() =>
-                                            router.visit(
-                                                route("resources.show", {
-                                                    resource: resource.slug,
-                                                })
-                                            )
-                                        }
-                                        className="bg-light-blue hover:bg-light-blue/80 text-white font-work-sans"
-                                    >
-                                        <Download className="mr-2 w-3 h-3" />
-                                        Download
-                                    </Button>
-                                </div>
-                            </div>
-
-                            {/* Content */}
-                            <div className="p-4">
-                                <h3 className="font-space-grotesk font-semibold text-white text-sm mb-2 line-clamp-2">
-                                    {resource.title}
-                                </h3>
-                                <p className="text-slate-text text-xs mb-3 line-clamp-2">
-                                    {resource.description}
-                                </p>
-                                <div className="flex gap-2">
-                                    <Button
-                                        size="sm"
-                                        onClick={() =>
-                                            router.visit(
-                                                route(
-                                                    "resources.show",
-                                                    resource.slug
-                                                )
-                                            )
-                                        }
-                                        className="flex-1 bg-light-blue/20 hover:bg-light-blue text-light-blue hover:text-white text-xs border border-light-blue/30"
-                                    >
-                                        Download
-                                    </Button>
-                                    <Button
-                                        size="sm"
-                                        variant="ghost"
-                                        className="text-slate-text hover:gradient-upstream text-xs"
-                                    >
-                                        <ExternalLink className="w-3 h-3" />
-                                    </Button>
-                                </div>
-                            </div>
-                        </Card>
-                    ))}
-                </div>
+                {/* <ResourceGrid /> */}
 
                 {/* View More CTA */}
                 <div ref={ctaRef} className="text-center">
@@ -411,52 +296,11 @@ const ResourcesSection = ({
                         onClick={() => router.visit(route("resources.index"))}
                         className="gradient-upstream text-white font-work-sans font-semibold px-8 py-4 rounded-full hover-glow"
                     >
-                        View More Templates
-                        <ExternalLink className="ml-2 w-4 h-4" />
+                        View More Templates...
+                        {/* <ExternalLink className="ml-2 w-4 h-4" /> */}
                     </Button>
                 </div>
             </div>
-
-            <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-                <DialogContent className="bg-card border-gray-text/20">
-                    <DialogHeader>
-                        <DialogTitle className="text-white font-sora">
-                            Download {selectedResource?.title}
-                        </DialogTitle>
-                    </DialogHeader>
-                    <div className="space-y-4">
-                        <div>
-                            <label className="block text-slate-text font-work-sans mb-2">
-                                Email Address
-                            </label>
-                            <Input
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder="your@email.com"
-                                className="bg-background/50 border-gray-text/30 text-midnight-blue"
-                            />
-                        </div>
-                        <div className="flex gap-3">
-                            <Button
-                                onClick={handleDownloadNow}
-                                className="flex-1 gradient-upstream text-white font-work-sans font-semibold"
-                            >
-                                <Check className="mr-2 w-4 h-4" />
-                                Download Now
-                            </Button>
-                            <Button
-                                onClick={handleSendEmail}
-                                variant="outline"
-                                className="flex-1 border-light-blue text-light-blue hover:bg-light-blue hover:text-white"
-                            >
-                                <Mail className="mr-2 w-4 h-4" />
-                                Send to Email
-                            </Button>
-                        </div>
-                    </div>
-                </DialogContent>
-            </Dialog>
         </section>
     );
 };

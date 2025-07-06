@@ -5,9 +5,10 @@ import { Textarea } from "@/Components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Calendar, ArrowRight, Clock } from "lucide-react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { router } from "@inertiajs/react";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger);
 
 const ContactSection = () => {
     const sectionRef = useRef<HTMLDivElement>(null);
@@ -22,65 +23,97 @@ const ContactSection = () => {
     const { toast } = useToast();
 
     useEffect(() => {
-        const ctx = gsap.context(() => {
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 80%",
-                    end: "bottom 20%",
-                    toggleActions: "play none none reverse",
-                },
+        if (typeof window !== "undefined") {
+            import("gsap/ScrollTrigger").then((mod) => {
+                const ScrollTrigger = mod.default || mod.ScrollTrigger;
+                gsap.registerPlugin(ScrollTrigger);
+
+                const ctx = gsap.context(() => {
+                    const tl = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: sectionRef.current,
+                            start: "top 80%",
+                            end: "bottom 20%",
+                            toggleActions: "play none none reverse",
+                        },
+                    });
+
+                    tl.from(titleRef.current, {
+                        opacity: 0,
+                        y: 50,
+                        duration: 0.8,
+                        ease: "power3.out",
+                    })
+                        .from(
+                            formRef.current,
+                            {
+                                opacity: 0,
+                                y: 30,
+                                duration: 0.8,
+                                ease: "power3.out",
+                            },
+                            "-=0.4"
+                        )
+                        .from(
+                            calendlyRef.current,
+                            {
+                                opacity: 0,
+                                y: 30,
+                                duration: 0.8,
+                                ease: "power3.out",
+                            },
+                            "-=0.6"
+                        );
+                }, sectionRef);
+
+                return () => ctx.revert();
             });
-
-            tl.from(titleRef.current, {
-                opacity: 0,
-                y: 50,
-                duration: 0.8,
-                ease: "power3.out",
-            })
-                .from(
-                    formRef.current,
-                    {
-                        opacity: 0,
-                        y: 30,
-                        duration: 0.8,
-                        ease: "power3.out",
-                    },
-                    "-=0.4"
-                )
-                .from(
-                    calendlyRef.current,
-                    {
-                        opacity: 0,
-                        y: 30,
-                        duration: 0.8,
-                        ease: "power3.out",
-                    },
-                    "-=0.6"
-                );
-        }, sectionRef);
-
-        return () => ctx.revert();
+        }
     }, []);
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    // const handleSubmit = async (e: React.FormEvent) => {
+    //     e.preventDefault();
+    //     setIsSubmitting(true);
+
+    //     await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    //     console.log("Form submitted:", { name, email, message });
+
+    //     toast({
+    //         title: "Thanks for reaching out!",
+    //         description: "We'll get back to you within 24 hours.",
+    //     });
+
+    //     setName("");
+    //     setEmail("");
+    //     setMessage("");
+    //     setIsSubmitting(false);
+    // };
+
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
-        console.log("Form submitted:", { name, email, message });
-
-        toast({
-            title: "Thanks for reaching out!",
-            description:
-                "We'll get back to you within 24 hours with your custom automation strategy.",
-        });
-
-        setName("");
-        setEmail("");
-        setMessage("");
-        setIsSubmitting(false);
+        router.post(
+            route("home.sendEmail"), // Make sure this matches your named route
+            { name, email, message },
+            {
+                preserveScroll: true,
+                onSuccess: () => {
+                    setName("");
+                    setEmail("");
+                    setMessage("");
+                },
+                onError: (errors) => {
+                    toast({
+                        title: "Error",
+                        description: "Please check your input and try again.",
+                        variant: "destructive",
+                    });
+                },
+                onFinish: () => setIsSubmitting(false),
+            }
+        );
     };
 
     const handleCalendlyClick = () => {
@@ -249,7 +282,7 @@ const ContactSection = () => {
                     </div>
                 </div>
 
-                <div className="mt-12 text-center">
+                {/* <div className="mt-12 text-center">
                     <p className="text-slate-text text-sm mb-4">
                         Prefer to email us directly?
                     </p>
@@ -265,7 +298,7 @@ const ContactSection = () => {
                     >
                         hello@blazingautomations.com →
                     </Button>
-                </div>
+                </div> */}
             </div>
         </section>
     );

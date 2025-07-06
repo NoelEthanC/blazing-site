@@ -1,3 +1,4 @@
+import { Head } from "@inertiajs/react";
 import GuestLayout from "./GuestLayout";
 
 export default function SitePageLayout({
@@ -29,6 +30,37 @@ export default function SitePageLayout({
                     </div>
                 </div>
             </nav> */}
+
+            <Head>
+                <meta property="og:site_name" content="Blazing Automations" />
+                <meta property="og:type" content="website" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:site" content="@noelethan" />
+                <meta
+                    property="og:url"
+                    content="https://blazingautomations.com/"
+                />
+                <meta
+                    property="og:image"
+                    content="https://blazingautomations.com/images/og-default.jpg"
+                />
+                <meta
+                    name="twitter:image"
+                    content="https://blazingautomations.com/images/og-default.jpg"
+                />
+
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Organization",
+                        name: "Blazing Automations",
+                        url: "https://blazingautomations.com",
+                        logo: "https://blazingautomations.com/public/images/logo.png",
+                        description:
+                            "We build AI automation systems and web solutions to help you achieve your business goals.",
+                    })}
+                </script>
+            </Head>
 
             <main>{children}</main>
         </div>

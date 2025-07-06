@@ -37,7 +37,13 @@ export default function Index({ resources }: ResourcesPageProps) {
     }, []);
     return (
         <SitePageLayout>
-            <Head title="Resources" />
+            <Head>
+                <title>Resources </title>
+                <meta
+                    name="description"
+                    content="Explore guides, tutorials, and tools to help you build automations, web platforms, and AI workflows that move your business forward."
+                />
+            </Head>
 
             <div className="min-h-screen bg-midnight-blue py-36">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

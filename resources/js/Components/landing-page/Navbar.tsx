@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { Button } from "@/Components/ui/button";
 import { Zap, Menu, X } from "lucide-react";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import { handleLinkClick } from "@/lib/utils";
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { url } = usePage();
 
     const navItems = [
         { label: "Home", href: "/" },
         { label: "About us", href: "/about" },
         { label: "Services", href: "/#services" },
-        { label: "Resources", href: "/#resources" },
+        { label: "Resources", href: "/resources" },
         { label: "Contact", href: "/#contact" },
     ];
 
@@ -64,15 +65,26 @@ const Navbar = () => {
 
                     {/* CTA Button */}
                     <div className="hidden md:block ml-6">
-                        <Button
-                            onClick={() => handleLinkClick("resources")}
-                            className="gradient-upstream text-white font-work-sans font-semibold px-4 py-2 rounded-full hover-glow text-sm"
-                        >
-                            Get Our Templates
-                            <span className="ml-2 bg-sunray text-midnight-blue px-2 py-1 rounded-full text-xs font-bold">
-                                FREE
-                            </span>
-                        </Button>
+                        {url !== "/" && !url.includes("/#") ? (
+                            <a
+                                href={`https://www.youtube.com/@BlazingAutomations`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="gradient-upstream text-white font-work-sans font-semibold px-4 py-2  rounded-full hover-glow text-base"
+                            >
+                                Watch Us Build
+                            </a>
+                        ) : (
+                            <Button
+                                onClick={() => handleLinkClick("resources")}
+                                className="gradient-upstream text-white font-work-sans font-semibold px-4 py-2 rounded-full hover-glow text-sm"
+                            >
+                                Get Our Templates
+                                <span className="ml-2 bg-sunray text-midnight-blue px-2 py-1 rounded-full text-xs font-bold">
+                                    FREE
+                                </span>
+                            </Button>
+                        )}
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -106,10 +118,14 @@ const Navbar = () => {
                                 </Link>
                             ))}
                             <Button
-                                onClick={() => handleLinkClick("resources")}
+                                onClick={() =>
+                                    handleLinkClick(
+                                        url !== "/" ? "/resources" : "resources"
+                                    )
+                                }
                                 className="gradient-upstream text-white font-work-sans font-semibold px-4 py-2 rounded-full hover-glow w-full text-sm"
                             >
-                                Get Started
+                                Get Templates
                                 <span className="ml-2 bg-sunray text-midnight-blue px-2 py-1 rounded-full text-xs font-bold">
                                     FREE
                                 </span>

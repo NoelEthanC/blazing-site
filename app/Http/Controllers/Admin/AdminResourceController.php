@@ -13,7 +13,7 @@ class AdminResourceController extends Controller
 {
     public function index()
     {
-        $resources = Resource::with('category')->latest()->paginate(3);
+        $resources = Resource::with('category')->latest()->paginate(10);
         return Inertia::render('Admin/Resources/ResourcesManager', [
             'resources' => $resources,
         ]);
@@ -75,7 +75,7 @@ class AdminResourceController extends Controller
     public function update(Request $request, Resource $resource)
     {
         // dd($request->all(), $resource);
-        $resource->fill($request->all());
+        // $resource->fill($request->all());
         // dd($resource->isDirty(), $request->all());
         $data = $request->validate([
             'title' => 'required|string|max:255',
@@ -85,8 +85,8 @@ class AdminResourceController extends Controller
             'tags' => 'nullable|string',
             'tool' => 'nullable|string',
             'resource_type' => 'string|in:free,pro',
-            'guide_url' => 'nullable|url',
-            'video_url' => 'nullable|url',
+            'guide_url' => 'nullable|string',
+            'video_url' => 'nullable|string',
         ]);
 
         // ✅ Handle thumbnail upload
