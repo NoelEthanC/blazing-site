@@ -1,10 +1,11 @@
 import { jsxs, jsx, Fragment } from "react/jsx-runtime";
 import { useState, useEffect } from "react";
 import { useForm, router, Link, Head } from "@inertiajs/react";
-import { S as SitePageLayout } from "./SitePageLayout-Cqa8hkVD.js";
-import { G as GuestLayout } from "./GuestLayout-DSwAePEQ.js";
+import { S as SitePageLayout } from "./SitePageLayout-BLUrBoLM.js";
+import { G as GuestLayout } from "./GuestLayout-CH4uyFw4.js";
 import { PenTool } from "lucide-react";
-import "./Navbar-D2514n6l.js";
+import ReactGA from "react-ga4";
+import "./Navbar-BssyNonJ.js";
 import "./button-wnFVC-UW.js";
 import "@radix-ui/react-slot";
 import "class-variance-authority";
@@ -353,11 +354,37 @@ function RelatedResources({ resources }) {
     }) })
   ] });
 }
+const track = (ev) => {
+  ReactGA.event(ev.name, ev.params);
+  console.log("tracked google ecvent:", ev);
+};
+const trackResourcesDownload = (res) => {
+  const ev = {
+    name: "select_content",
+    params: {
+      content_type: "resourcec download",
+      content_id: `${res}`
+    }
+  };
+  track(ev);
+};
 function Show({ resource, relatedResources, breadcrumbs }) {
   var _a, _b;
   const [showModal, setShowModal] = useState(false);
   return /* @__PURE__ */ jsxs(SitePageLayout, { children: [
-    /* @__PURE__ */ jsx(Head, { title: resource.title }),
+    /* @__PURE__ */ jsxs(Head, { children: [
+      /* @__PURE__ */ jsxs("title", { children: [
+        resource.title,
+        " "
+      ] }),
+      /* @__PURE__ */ jsx(
+        "meta",
+        {
+          name: "description",
+          content: resource.excerpt || "Download thos tempalte and watch this detailed guide on building AI-powered workflows, automations, and web tools that help your business grow."
+        }
+      )
+    ] }),
     /* @__PURE__ */ jsx("div", { className: "min-h-screen bg-midnight-blue py-32", children: /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: [
       /* @__PURE__ */ jsx("nav", { className: "flex mb-8", "aria-label": "Breadcrumb", children: /* @__PURE__ */ jsx("ol", { className: "flex items-center space-x-4", children: breadcrumbs.map((crumb, index) => /* @__PURE__ */ jsxs("li", { className: "flex items-center", children: [
         index > 0 && /* @__PURE__ */ jsx(
@@ -421,7 +448,7 @@ function Show({ resource, relatedResources, breadcrumbs }) {
                 ),
                 "File Type:",
                 " ",
-                ((_b = resource.file_type) == null ? void 0 : _b.toUpperCase()) || "PDF"
+                ((_b = resource.file_type) == null ? void 0 : _b.toUpperCase()) || "JSON(zipped)"
               ] }),
               /* @__PURE__ */ jsxs("div", { className: "flex items-center text-sm text-gray-500", children: [
                 /* @__PURE__ */ jsx(PenTool, { className: "w-4 h-4 mr-2" }),
@@ -443,7 +470,12 @@ function Show({ resource, relatedResources, breadcrumbs }) {
               /* @__PURE__ */ jsxs(
                 "button",
                 {
-                  onClick: () => setShowModal(true),
+                  onClick: () => {
+                    trackResourcesDownload(
+                      resource.title
+                    );
+                    setShowModal(true);
+                  },
                   className: "w-full bg-[#3f79ff] hover:bg-[#3468db] text-white font-semibold py-3 px-5 rounded-lg flex items-center justify-center transition duration-200",
                   children: [
                     /* @__PURE__ */ jsx(
@@ -471,7 +503,7 @@ function Show({ resource, relatedResources, breadcrumbs }) {
               !resource.youtube_url && /* @__PURE__ */ jsx(
                 "a",
                 {
-                  href: resource.youtube_url,
+                  href: resource.video_url,
                   target: "_blank",
                   rel: "noopener noreferrer",
                   className: "w-full border border-[#3f79ff] text-[#3f79ff] font-medium py-3 px-5 rounded-lg flex items-center justify-center hover:bg-[#3f79ff]/10 transition duration-200",

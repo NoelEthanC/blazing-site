@@ -1,12 +1,12 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import { Link, router, Head } from "@inertiajs/react";
-import { S as SitePageLayout } from "./SitePageLayout-Cqa8hkVD.js";
-import { G as GuestLayout } from "./GuestLayout-DSwAePEQ.js";
+import { S as SitePageLayout } from "./SitePageLayout-BLUrBoLM.js";
+import { G as GuestLayout } from "./GuestLayout-CH4uyFw4.js";
 import { I as Input } from "./input-zTnVlpte.js";
 import { Search } from "lucide-react";
 import debounce from "lodash.debounce";
 import { useState, useRef, useEffect } from "react";
-import "./Navbar-D2514n6l.js";
+import "./Navbar-BssyNonJ.js";
 import "./button-wnFVC-UW.js";
 import "@radix-ui/react-slot";
 import "class-variance-authority";
@@ -15,6 +15,7 @@ import "clsx";
 import "tailwind-merge";
 function ResourceCard({ resource }) {
   var _a;
+  console.log("resource", resource);
   return /* @__PURE__ */ jsxs("div", { className: "bg-[#0e172a] rounded-xl shadow-lg hover:shadow-2xl hover:scale-[1.01] transition-all duration-300 overflow-hidden border border-[#1a2435]", children: [
     /* @__PURE__ */ jsx("div", { className: "aspect-w-16 aspect-h-9", children: /* @__PURE__ */ jsx(
       "img",
@@ -94,10 +95,10 @@ function ResourceCard({ resource }) {
             ]
           }
         ),
-        !resource.youtube_url ? /* @__PURE__ */ jsx(
+        resource.video_url ? /* @__PURE__ */ jsx(
           "a",
           {
-            href: `https://www.youtube.com/watch?v=IeZbk2-2obE`,
+            href: resource.youtube_url,
             target: "_blank",
             rel: "noopener noreferrer",
             className: "inline-flex items-center justify-center w-full px-4 py-2 text-sm font-semibold rounded-md text-[#09111f] bg-gradient-to-r from-[#ca6678] to-[#fcbf5b] hover:opacity-90 transition duration-200",
@@ -132,7 +133,16 @@ function Index({ resources }) {
     };
   }, []);
   return /* @__PURE__ */ jsxs(SitePageLayout, { children: [
-    /* @__PURE__ */ jsx(Head, { title: "Resources" }),
+    /* @__PURE__ */ jsxs(Head, { children: [
+      /* @__PURE__ */ jsx("title", { children: "Resources " }),
+      /* @__PURE__ */ jsx(
+        "meta",
+        {
+          name: "description",
+          content: "Explore guides, tutorials, and tools to help you build automations, web platforms, and AI workflows that move your business forward."
+        }
+      )
+    ] }),
     /* @__PURE__ */ jsx("div", { className: "min-h-screen bg-midnight-blue py-36", children: /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: [
       /* @__PURE__ */ jsxs("div", { className: "text-center mb-16 animate-fade-in-up", children: [
         /* @__PURE__ */ jsx("h1", { className: "text-4xl font-bold text-white mb-4 tracking-tight", children: "Free Resources" }),

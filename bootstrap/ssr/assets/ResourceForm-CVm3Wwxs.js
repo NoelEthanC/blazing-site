@@ -9,7 +9,7 @@ import * as SelectPrimitive from "@radix-ui/react-select";
 import { ChevronDown, Check, ChevronUp, Circle, ArrowBigLeft, Upload } from "lucide-react";
 import { c as cn } from "./utils-CYs7COny.js";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
-import { A as AdminControlLayout } from "./AdminControlLayout-C8TFqy39.js";
+import { A as AdminControlLayout } from "./AdminControlLayout-CvklES1f.js";
 import { C as Card, b as CardHeader, c as CardTitle } from "./card-DU6vEFA_.js";
 import { usePage, useForm, Head, Link } from "@inertiajs/react";
 import "@radix-ui/react-slot";
@@ -195,7 +195,7 @@ function ResourceForm() {
   function submitForm(e) {
     e.preventDefault();
     const routeName = editingResource ? "admin.resources.update" : "admin.resources.store";
-    post(route(routeName, editingResource == null ? void 0 : editingResource.id), {
+    post(route(routeName, editingResource == null ? void 0 : editingResource.slug), {
       forceFormData: true,
       onSuccess: () => {
         reset();
@@ -428,6 +428,36 @@ const ResourceFormContent = ({
           ] }),
           /* @__PURE__ */ jsx("p", { className: "text-[#cbd5e1] text-sm mt-1", children: "Accepts .json, .zip, .pdf files" }),
           errors.file_path && /* @__PURE__ */ jsx("p", { className: "text-red-400 text-sm", children: errors.file_path })
+        ] }),
+        /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-2 gap-4", children: [
+          /* @__PURE__ */ jsxs("div", { children: [
+            /* @__PURE__ */ jsx(Label, { htmlFor: "guide_url", className: "text-white", children: "Guide URL (PDF or Notion)" }),
+            /* @__PURE__ */ jsx(
+              Input,
+              {
+                id: "guide_url",
+                value: formData.guide_url,
+                onChange: (e) => setData("guide_url", e.target.value),
+                className: "bg-white/5 border-white/10 text-white",
+                placeholder: "https://..."
+              }
+            ),
+            errors.guide_url && /* @__PURE__ */ jsx("p", { className: "text-red-400 text-sm", children: errors.guide_url })
+          ] }),
+          /* @__PURE__ */ jsxs("div", { children: [
+            /* @__PURE__ */ jsx(Label, { htmlFor: "video_url", className: "text-white", children: "Video URL (Optional)" }),
+            /* @__PURE__ */ jsx(
+              Input,
+              {
+                id: "video_url",
+                value: formData.video_url,
+                onChange: (e) => setData("video_url", e.target.value),
+                className: "bg-white/5 border-white/10 text-white",
+                placeholder: "YouTube or Vimeo URL"
+              }
+            ),
+            errors.video_url && /* @__PURE__ */ jsx("p", { className: "text-red-400 text-sm", children: errors.video_url })
+          ] })
         ] }),
         /* @__PURE__ */ jsxs("div", { children: [
           /* @__PURE__ */ jsx(Label, { htmlFor: "thumbnail_path", className: "text-white", children: "Thumbnail Preview" }),

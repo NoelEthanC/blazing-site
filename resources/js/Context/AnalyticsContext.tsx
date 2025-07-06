@@ -13,6 +13,7 @@ type Props = {
 
 export const AnalyticsContext: Context<null> = createContext(null);
 
+//@ts-ignore
 const AnalyticsProvider: FC<PropsWithChildren<Props>> = ({
     children,
     session_id,

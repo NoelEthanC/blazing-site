@@ -1,15 +1,16 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import { useState, useEffect } from "react";
 import { C as Card, a as CardContent } from "./card-DU6vEFA_.js";
-import { N as Navbar } from "./Navbar-D2514n6l.js";
+import { G as GuestLayout } from "./GuestLayout-CH4uyFw4.js";
+import { Head } from "@inertiajs/react";
 import "./utils-CYs7COny.js";
 import "clsx";
 import "tailwind-merge";
+import "lucide-react";
+import "./Navbar-BssyNonJ.js";
 import "./button-wnFVC-UW.js";
 import "@radix-ui/react-slot";
 import "class-variance-authority";
-import "lucide-react";
-import "@inertiajs/react";
 function AboutPage() {
   const [content, setContent] = useState({
     mission_title: "Our Mission",
@@ -40,9 +41,18 @@ function AboutPage() {
     { name: "OpenAI", icon: "🤖" },
     { name: "Anthropic", icon: "🧠" }
   ];
-  return /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-[#09111f]", children: [
-    /* @__PURE__ */ jsx(Navbar, {}),
-    /* @__PURE__ */ jsx("div", { className: "pt-24 pb-16 px-4", children: /* @__PURE__ */ jsxs("div", { className: "max-w-6xl mx-auto", children: [
+  return /* @__PURE__ */ jsxs(GuestLayout, { children: [
+    /* @__PURE__ */ jsxs(Head, { children: [
+      /* @__PURE__ */ jsx("title", { children: "About Blazing Automations – Our Mission and Story" }),
+      /* @__PURE__ */ jsx(
+        "meta",
+        {
+          name: "description",
+          content: "Blazing Automations was built to help people automate smarter and build faster. Learn about our story, our mission, and the brains behind the systems."
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsx("div", { className: "min-h-screen bg-[#09111f]", children: /* @__PURE__ */ jsx("div", { className: "pt-24 pb-16 px-4", children: /* @__PURE__ */ jsxs("div", { className: "max-w-6xl mx-auto", children: [
       /* @__PURE__ */ jsxs("div", { className: "text-center mb-16", children: [
         /* @__PURE__ */ jsxs("h1", { className: "text-4xl md:text-5xl font-bold text-white mb-4", children: [
           "About",
@@ -90,7 +100,7 @@ function AboutPage() {
           tool.name
         )) })
       ] }) })
-    ] }) })
+    ] }) }) })
   ] });
 }
 export {

@@ -38,7 +38,7 @@ const TextInput = forwardRef(function TextInput2({
     {
       ...props,
       type,
-      className: "rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-600 dark:focus:ring-indigo-600 " + className,
+      className: "rounded-md border-light-blue/35 shadow-sm focus:border-sunray focus:ring-sunray dark:border-gray-700 bg-light-blue/25 text-white dark:bg-gray-900 dark:text-gray-300 dark:focus:border-sunray dark:focus:bg-sunray " + className,
       ref: localRef
     }
   );

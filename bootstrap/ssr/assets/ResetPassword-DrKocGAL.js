@@ -1,52 +1,38 @@
 import { jsxs, jsx } from "react/jsx-runtime";
-import { T as TextInput, I as InputError } from "./TextInput-CfTqIySL.js";
-import { I as InputLabel } from "./InputLabel-DDs2XNYP.js";
+import { T as TextInput, I as InputError } from "./TextInput-D1yy7HiT.js";
+import { I as InputLabel } from "./InputLabel-3sCNhFCz.js";
 import { P as PrimaryButton } from "./PrimaryButton-DDF1xnxF.js";
-import { G as GuestLayout } from "./GuestLayout-DSwAePEQ.js";
-import { useForm, Head, Link } from "@inertiajs/react";
+import { G as GuestLayout } from "./GuestLayout-CH4uyFw4.js";
+import { useForm, Head } from "@inertiajs/react";
 import "react";
 import "lucide-react";
-import "./Navbar-D2514n6l.js";
+import "./Navbar-BssyNonJ.js";
 import "./button-wnFVC-UW.js";
 import "@radix-ui/react-slot";
 import "class-variance-authority";
 import "./utils-CYs7COny.js";
 import "clsx";
 import "tailwind-merge";
-function Register() {
+function ResetPassword({
+  token,
+  email
+}) {
   const { data, setData, post, processing, errors, reset } = useForm({
-    name: "",
-    email: "",
+    token,
+    email,
     password: "",
     password_confirmation: ""
   });
   const submit = (e) => {
     e.preventDefault();
-    post(route("register"), {
+    post(route("password.store"), {
       onFinish: () => reset("password", "password_confirmation")
     });
   };
   return /* @__PURE__ */ jsxs(GuestLayout, { children: [
-    /* @__PURE__ */ jsx(Head, { title: "Register" }),
+    /* @__PURE__ */ jsx(Head, { title: "Reset Password" }),
     /* @__PURE__ */ jsxs("form", { onSubmit: submit, children: [
       /* @__PURE__ */ jsxs("div", { children: [
-        /* @__PURE__ */ jsx(InputLabel, { htmlFor: "name", value: "Name" }),
-        /* @__PURE__ */ jsx(
-          TextInput,
-          {
-            id: "name",
-            name: "name",
-            value: data.name,
-            className: "mt-1 block w-full",
-            autoComplete: "name",
-            isFocused: true,
-            onChange: (e) => setData("name", e.target.value),
-            required: true
-          }
-        ),
-        /* @__PURE__ */ jsx(InputError, { message: errors.name, className: "mt-2" })
-      ] }),
-      /* @__PURE__ */ jsxs("div", { className: "mt-4", children: [
         /* @__PURE__ */ jsx(InputLabel, { htmlFor: "email", value: "Email" }),
         /* @__PURE__ */ jsx(
           TextInput,
@@ -57,8 +43,7 @@ function Register() {
             value: data.email,
             className: "mt-1 block w-full",
             autoComplete: "username",
-            onChange: (e) => setData("email", e.target.value),
-            required: true
+            onChange: (e) => setData("email", e.target.value)
           }
         ),
         /* @__PURE__ */ jsx(InputError, { message: errors.email, className: "mt-2" })
@@ -74,8 +59,8 @@ function Register() {
             value: data.password,
             className: "mt-1 block w-full",
             autoComplete: "new-password",
-            onChange: (e) => setData("password", e.target.value),
-            required: true
+            isFocused: true,
+            onChange: (e) => setData("password", e.target.value)
           }
         ),
         /* @__PURE__ */ jsx(InputError, { message: errors.password, className: "mt-2" })
@@ -91,14 +76,12 @@ function Register() {
         /* @__PURE__ */ jsx(
           TextInput,
           {
-            id: "password_confirmation",
             type: "password",
             name: "password_confirmation",
             value: data.password_confirmation,
             className: "mt-1 block w-full",
             autoComplete: "new-password",
-            onChange: (e) => setData("password_confirmation", e.target.value),
-            required: true
+            onChange: (e) => setData("password_confirmation", e.target.value)
           }
         ),
         /* @__PURE__ */ jsx(
@@ -109,20 +92,10 @@ function Register() {
           }
         )
       ] }),
-      /* @__PURE__ */ jsxs("div", { className: "mt-4 flex items-center justify-end", children: [
-        /* @__PURE__ */ jsx(
-          Link,
-          {
-            href: route("login"),
-            className: "rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800",
-            children: "Already registered?"
-          }
-        ),
-        /* @__PURE__ */ jsx(PrimaryButton, { className: "ms-4", disabled: processing, children: "Register" })
-      ] })
+      /* @__PURE__ */ jsx("div", { className: "mt-4 flex items-center justify-end", children: /* @__PURE__ */ jsx(PrimaryButton, { className: "ms-4", disabled: processing, children: "Reset Password" }) })
     ] })
   ] });
 }
 export {
-  Register as default
+  ResetPassword as default
 };

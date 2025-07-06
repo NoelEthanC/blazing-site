@@ -1,6 +1,7 @@
-import { jsx, jsxs } from "react/jsx-runtime";
+import { jsx, jsxs, Fragment } from "react/jsx-runtime";
 import { Twitter, Linkedin, Github, Mail } from "lucide-react";
-import { N as Navbar } from "./Navbar-D2514n6l.js";
+import { N as Navbar } from "./Navbar-BssyNonJ.js";
+import { Head } from "@inertiajs/react";
 const Footer = () => {
   const socialLinks = [
     {
@@ -28,7 +29,7 @@ const Footer = () => {
     /* @__PURE__ */ jsxs("div", { className: "flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0", children: [
       /* @__PURE__ */ jsxs("div", { className: "text-center md:text-left", children: [
         /* @__PURE__ */ jsx("h3", { className: "font-sora font-bold text-2xl text-white mb-2", children: "Blazing Automations" }),
-        /* @__PURE__ */ jsx("p", { className: "text-slate-text", children: "Transforming businesses with AI automation and no-code solutions." })
+        /* @__PURE__ */ jsx("p", { className: "text-slate-text", children: "Transforming businesses with AI automation and web solutions that work for you." })
       ] }),
       /* @__PURE__ */ jsx("div", { className: "flex items-center space-x-6", children: socialLinks.map((link) => /* @__PURE__ */ jsx(
         "a",
@@ -69,11 +70,48 @@ const Footer = () => {
   ] }) });
 };
 function GuestLayout({ children }) {
-  return /* @__PURE__ */ jsx("div", { className: "flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0 dark:bg-gray-900", children: /* @__PURE__ */ jsxs("div", { className: " w-full overflow-hidden bg-midnight-blue dark:bg-gray-800", children: [
-    /* @__PURE__ */ jsx(Navbar, {}),
-    children,
-    /* @__PURE__ */ jsx(Footer, {})
-  ] }) });
+  return /* @__PURE__ */ jsxs(Fragment, { children: [
+    /* @__PURE__ */ jsxs(Head, { children: [
+      /* @__PURE__ */ jsx("meta", { property: "og:site_name", content: "Blazing Automations" }),
+      /* @__PURE__ */ jsx("meta", { property: "og:type", content: "website" }),
+      /* @__PURE__ */ jsx("meta", { name: "twitter:card", content: "summary_large_image" }),
+      /* @__PURE__ */ jsx("meta", { name: "twitter:site", content: "@noelethan" }),
+      /* @__PURE__ */ jsx(
+        "meta",
+        {
+          property: "og:url",
+          content: "https://blazingautomations.com/"
+        }
+      ),
+      /* @__PURE__ */ jsx(
+        "meta",
+        {
+          property: "og:image",
+          content: "https://blazingautomations.com/images/og-default.jpg"
+        }
+      ),
+      /* @__PURE__ */ jsx(
+        "meta",
+        {
+          name: "twitter:image",
+          content: "https://blazingautomations.com/images/og-default.jpg"
+        }
+      ),
+      /* @__PURE__ */ jsx("script", { type: "application/ld+json", children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "Blazing Automations",
+        url: "https://blazingautomations.com",
+        logo: "https://blazingautomations.com/public/images/logo.png",
+        description: "We build automation systems and web solutions to help you achieve your business goals."
+      }) })
+    ] }),
+    /* @__PURE__ */ jsx("div", { className: "flex min-h-screen flex-col items-center bg-midnight-blue pt-6 sm:justify-center sm:pt-0 ", children: /* @__PURE__ */ jsxs("div", { className: " w-full overflow-hidden bg-midnight-blue ", children: [
+      /* @__PURE__ */ jsx(Navbar, {}),
+      children,
+      /* @__PURE__ */ jsx(Footer, {})
+    ] }) })
+  ] });
 }
 export {
   GuestLayout as G

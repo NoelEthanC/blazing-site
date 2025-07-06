@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { C as Card, b as CardHeader, c as CardTitle, a as CardContent } from "./card-DU6vEFA_.js";
 import { Download, Users, FileText, Eye } from "lucide-react";
 import { f as formatDateTime } from "./utils-CYs7COny.js";
-import { A as AdminControlLayout } from "./AdminControlLayout-C8TFqy39.js";
+import { A as AdminControlLayout } from "./AdminControlLayout-CvklES1f.js";
 import { Head } from "@inertiajs/react";
 import "clsx";
 import "tailwind-merge";

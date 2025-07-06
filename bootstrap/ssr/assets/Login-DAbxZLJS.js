@@ -1,18 +1,18 @@
 import { jsx, jsxs } from "react/jsx-runtime";
-import { T as TextInput, I as InputError } from "./TextInput-CfTqIySL.js";
-import { I as InputLabel } from "./InputLabel-DDs2XNYP.js";
-import { P as PrimaryButton } from "./PrimaryButton-DDF1xnxF.js";
-import { G as GuestLayout } from "./GuestLayout-DSwAePEQ.js";
+import { T as TextInput, I as InputError } from "./TextInput-D1yy7HiT.js";
+import { I as InputLabel } from "./InputLabel-3sCNhFCz.js";
+import { G as GuestLayout } from "./GuestLayout-CH4uyFw4.js";
 import { useForm, Head, Link } from "@inertiajs/react";
+import AuthPagesLayout from "./AuthPagesLayout-B7dzccG-.js";
+import { B as Button } from "./button-wnFVC-UW.js";
 import "react";
 import "lucide-react";
-import "./Navbar-D2514n6l.js";
-import "./button-wnFVC-UW.js";
-import "@radix-ui/react-slot";
-import "class-variance-authority";
+import "./Navbar-BssyNonJ.js";
 import "./utils-CYs7COny.js";
 import "clsx";
 import "tailwind-merge";
+import "@radix-ui/react-slot";
+import "class-variance-authority";
 function Checkbox({
   className = "",
   ...props
@@ -41,7 +41,7 @@ function Login({
       onFinish: () => reset("password")
     });
   };
-  return /* @__PURE__ */ jsxs(GuestLayout, { children: [
+  return /* @__PURE__ */ jsx(GuestLayout, { children: /* @__PURE__ */ jsxs(AuthPagesLayout, { children: [
     /* @__PURE__ */ jsx(Head, { title: "Log in" }),
     status && /* @__PURE__ */ jsx("div", { className: "mb-4 text-sm font-medium text-green-600", children: status }),
     /* @__PURE__ */ jsxs("form", { onSubmit: submit, children: [
@@ -76,7 +76,13 @@ function Login({
             onChange: (e) => setData("password", e.target.value)
           }
         ),
-        /* @__PURE__ */ jsx(InputError, { message: errors.password, className: "mt-2" })
+        /* @__PURE__ */ jsx(
+          InputError,
+          {
+            message: errors.password,
+            className: "mt-2"
+          }
+        )
       ] }),
       /* @__PURE__ */ jsx("div", { className: "mt-4 block", children: /* @__PURE__ */ jsxs("label", { className: "flex items-center", children: [
         /* @__PURE__ */ jsx(
@@ -97,14 +103,21 @@ function Login({
           Link,
           {
             href: route("password.request"),
-            className: "rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800",
+            className: "rounded-md text-sm text-gray-400 underline hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800",
             children: "Forgot your password?"
           }
         ),
-        /* @__PURE__ */ jsx(PrimaryButton, { className: "ms-4", disabled: processing, children: "Log in" })
+        /* @__PURE__ */ jsx(
+          Button,
+          {
+            className: "ms-4 bg-light-blue hover:bg-light-blue/80 font-bold rounded-full px-10 uppercase tracking-wider",
+            disabled: processing,
+            children: "Log in"
+          }
+        )
       ] })
     ] })
-  ] });
+  ] }) });
 }
 export {
   Login as default

@@ -2,24 +2,21 @@ import { jsxs, jsx, Fragment } from "react/jsx-runtime";
 import { router, usePage, Head } from "@inertiajs/react";
 import { useRef, useEffect, useState } from "react";
 import { B as Button } from "./button-wnFVC-UW.js";
-import { ArrowRight, Star, PlayCircle, Brain, BadgeDollarSign, MonitorCog, Workflow, Database, ShieldAlert, Clock, Zap, TrendingUp, Shield, MessageSquare, Wrench, Rocket, Calendar, Mail, Youtube, FileText, Download, ExternalLink, Check } from "lucide-react";
+import { ArrowRight, Star, PlayCircle, Brain, Globe, Workflow, ScanSearch, LayoutDashboard, Plug, Clock, Zap, TrendingUp, Shield, MessageSquare, Wrench, Rocket, Calendar, Mail, Youtube, FileText, Download, Video } from "lucide-react";
 import { gsap } from "gsap";
 import { c as cn, h as handleLinkClick } from "./utils-CYs7COny.js";
 import { C as Card } from "./card-DU6vEFA_.js";
 import { I as Input } from "./input-zTnVlpte.js";
 import { T as Textarea } from "./textarea-BEb2aoRb.js";
 import { u as useToast } from "./use-toast-DdRhLTSk.js";
-import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 import YouTube from "react-youtube";
 import { B as Badge } from "./badge-CGZGM-oT.js";
-import { D as Dialog, a as DialogContent, b as DialogHeader, c as DialogTitle } from "./dialog-D3zzmToV.js";
-import { G as GuestLayout } from "./GuestLayout-DSwAePEQ.js";
+import { G as GuestLayout } from "./GuestLayout-CH4uyFw4.js";
 import "@radix-ui/react-slot";
 import "class-variance-authority";
 import "clsx";
 import "tailwind-merge";
-import "@radix-ui/react-dialog";
-import "./Navbar-D2514n6l.js";
+import "./Navbar-BssyNonJ.js";
 const Hero = () => {
   const heroRef = useRef(null);
   const titleRef = useRef(null);
@@ -223,20 +220,21 @@ const Hero = () => {
               ref: titleRef,
               className: "font-sora font-bold text-4xl lg:w-2/3 text-center  mx-auto md:text-balance md:text-6xl lg:text-7xl leading-tight mb-6",
               children: [
-                /* @__PURE__ */ jsx("span", { className: "gradient-text", children: "Blazing" }),
+                /* @__PURE__ */ jsx("span", { className: "gradient-text", children: "Your Ideas" }),
                 " ",
-                /* @__PURE__ */ jsx("span", { className: "text-white", children: "Fast Automations " }),
-                /* @__PURE__ */ jsx("span", { className: "text-white", children: "For your " }),
+                /* @__PURE__ */ jsx("span", { className: "text-white", children: "Into Solutions " }),
+                /* @__PURE__ */ jsx("span", { className: "text-white", children: "that work " }),
                 " ",
                 /* @__PURE__ */ jsx("br", {}),
-                /* @__PURE__ */ jsx("span", { className: "gradient-text", children: "Business" })
+                /* @__PURE__ */ jsx("span", { className: "gradient-text", children: "for you" })
               ]
             }
           ),
           /* @__PURE__ */ jsx("div", { ref: subtitleRef, className: "space-y-4 mb-12", children: /* @__PURE__ */ jsxs("p", { className: "font-inter text-lg text-gray-text max-w-2xl mx-auto", children: [
-            "Let's turn your repetitive tasks into smart AI-driven workflows using no-code tools like",
-            " ",
-            /* @__PURE__ */ jsx("span", { className: "font-bold", children: "n8n, Make, and Zapier!" })
+            "From ",
+            /* @__PURE__ */ jsx("strong", { children: "AI" }),
+            " automations to stunning websites that work for you daily",
+            /* @__PURE__ */ jsx("span", { className: "font-bold" })
           ] }) }),
           /* @__PURE__ */ jsxs(
             "div",
@@ -265,17 +263,6 @@ const Hero = () => {
                 )
               ]
             }
-          ),
-          /* @__PURE__ */ jsx(
-            "div",
-            {
-              ref: statsRef,
-              className: " hidden lg:flex  bottom-14 lg:absolute lg:right-0 justify-center",
-              children: /* @__PURE__ */ jsxs("div", { className: "text-center mx-6", children: [
-                /* @__PURE__ */ jsx("div", { className: "text-4xl font-sora font-bold text-white", children: "50+" }),
-                /* @__PURE__ */ jsx("div", { className: "text-slate-text font-work-sans", children: "Automations & Chatbots" })
-              ] })
-            }
           )
         ] })
       ]
@@ -286,40 +273,40 @@ const ToolsSection = () => {
   const tools = [
     {
       name: "Chatbots & AI Agents",
-      description: "We build chatbots and AI agents that that integrates well with your systems",
+      description: "We develop task-specific AI agents and conversational chatbots that integrate seamlessly with your tools, APIs, and workflows.",
       icon: Brain
     },
     {
-      name: "CRM & Sales Automation",
-      description: "We automate your sales pipeline so you focus on closing, not chasing.",
-      icon: BadgeDollarSign
+      name: "Business Websites",
+      description: "We design and build responsive, fast, and SEO-ready websites that communicate your brand and convert visitors to clients.",
+      icon: Globe
     },
     {
-      name: "AI-Powered Business Systems",
-      description: "Inject AI into your processes to automate decisions, replies, and insights.",
-      icon: MonitorCog
-    },
-    {
-      name: "Custom Workflow Automation",
-      description: "We design and build no-code automation workflows that save you hours every week.",
+      name: "Automated AI Workflows",
+      description: "We design end-to-end automations using tools like n8n to streamline repetitive tasks, connect apps, and scale operations efficiently.",
       icon: Workflow
     },
     {
-      name: "Airtable System Architecture",
-      description: "Turn Airtable into a powerful backend with smart automations",
-      icon: Database
+      name: "AI-Powered Data Systems",
+      description: "We create intelligent systems that use AI for document processing, contextual search (RAG), classification, and decision support.",
+      icon: ScanSearch
     },
     {
-      name: " Audits & Strategy Calls",
-      description: "We audit your processes and identify the best places to save time with automation",
-      icon: ShieldAlert
+      name: "Custom Web Applications",
+      description: "We build scalable web apps using Laravel, React, and Supabase — tailored for dashboards, portals, or SaaS platforms.",
+      icon: LayoutDashboard
+    },
+    {
+      name: "API Integrations",
+      description: "We connect third-party services and internal APIs to your app with secure, well-documented, and scalable integration logic.",
+      icon: Plug
     }
   ];
   return /* @__PURE__ */ jsx("section", { id: "services", className: "py-28 px-4", children: /* @__PURE__ */ jsxs("div", { className: "max-w-6xl mx-auto", children: [
     /* @__PURE__ */ jsxs("div", { className: "text-center mb-16", children: [
       /* @__PURE__ */ jsxs("h2", { className: "font-sora font-bold text-4xl md:text-5xl text-white mb-6", children: [
         /* @__PURE__ */ jsx("span", { className: "gradient-text", children: "What We" }),
-        " Automate"
+        " Build"
       ] }),
       /* @__PURE__ */ jsx("p", { className: "font-inter text-xl text-slate-text max-w-3xl mx-auto", children: "We're experts with the world's most powerful automation tools. Let us build your custom workflow ecosystem." })
     ] }),
@@ -470,7 +457,6 @@ const ProcessSection = () => {
     )) })
   ] }) });
 };
-gsap.registerPlugin(ScrollTrigger);
 const ContactSection = () => {
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
@@ -482,55 +468,72 @@ const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse"
-        }
+    if (typeof window !== "undefined") {
+      import("gsap/ScrollTrigger.js").then((mod) => {
+        const ScrollTrigger = mod.default || mod.ScrollTrigger;
+        gsap.registerPlugin(ScrollTrigger);
+        const ctx = gsap.context(() => {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 80%",
+              end: "bottom 20%",
+              toggleActions: "play none none reverse"
+            }
+          });
+          tl.from(titleRef.current, {
+            opacity: 0,
+            y: 50,
+            duration: 0.8,
+            ease: "power3.out"
+          }).from(
+            formRef.current,
+            {
+              opacity: 0,
+              y: 30,
+              duration: 0.8,
+              ease: "power3.out"
+            },
+            "-=0.4"
+          ).from(
+            calendlyRef.current,
+            {
+              opacity: 0,
+              y: 30,
+              duration: 0.8,
+              ease: "power3.out"
+            },
+            "-=0.6"
+          );
+        }, sectionRef);
+        return () => ctx.revert();
       });
-      tl.from(titleRef.current, {
-        opacity: 0,
-        y: 50,
-        duration: 0.8,
-        ease: "power3.out"
-      }).from(
-        formRef.current,
-        {
-          opacity: 0,
-          y: 30,
-          duration: 0.8,
-          ease: "power3.out"
-        },
-        "-=0.4"
-      ).from(
-        calendlyRef.current,
-        {
-          opacity: 0,
-          y: 30,
-          duration: 0.8,
-          ease: "power3.out"
-        },
-        "-=0.6"
-      );
-    }, sectionRef);
-    return () => ctx.revert();
+    }
   }, []);
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1e3));
-    console.log("Form submitted:", { name, email, message });
-    toast({
-      title: "Thanks for reaching out!",
-      description: "We'll get back to you within 24 hours with your custom automation strategy."
-    });
-    setName("");
-    setEmail("");
-    setMessage("");
-    setIsSubmitting(false);
+    router.post(
+      route("home.sendEmail"),
+      // Make sure this matches your named route
+      { name, email, message },
+      {
+        preserveScroll: true,
+        onSuccess: () => {
+          setName("");
+          setEmail("");
+          setMessage("");
+        },
+        onError: (errors) => {
+          toast({
+            title: "Error",
+            description: "Please check your input and try again.",
+            variant: "destructive"
+          });
+        },
+        onFinish: () => setIsSubmitting(false)
+      }
+    );
   };
   const handleCalendlyClick = () => {
     window.open("https://calendly.com/noelethan-ch/30min", "_blank");
@@ -684,21 +687,6 @@ const ContactSection = () => {
               ]
             }
           )
-        ] }),
-        /* @__PURE__ */ jsxs("div", { className: "mt-12 text-center", children: [
-          /* @__PURE__ */ jsx("p", { className: "text-slate-text text-sm mb-4", children: "Prefer to email us directly?" }),
-          /* @__PURE__ */ jsx(
-            Button,
-            {
-              variant: "ghost",
-              className: "text-light-blue hover:text-sunray transition-colors",
-              onClick: () => window.open(
-                "mailto:hello@blazingautomations.com",
-                "_blank"
-              ),
-              children: "hello@blazingautomations.com →"
-            }
-          )
         ] })
       ] })
     }
@@ -820,7 +808,6 @@ const ToolsMarquee = () => {
     ) })
   ] });
 };
-gsap.registerPlugin(ScrollTrigger);
 const WatchUsBuildSection = ({ videoUrl }) => {
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
@@ -835,6 +822,25 @@ const WatchUsBuildSection = ({ videoUrl }) => {
     return match ? `https://www.youtube.com/embed/${match[1]}?autoplay=1` : "";
   };
   const embedUrl = getYouTubeEmbedUrl(videoUrl);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      import("gsap/ScrollTrigger.js").then((mod) => {
+        const ScrollTrigger = mod.default || mod.ScrollTrigger;
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.from(titleRef.current, {
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none"
+          },
+          y: 40,
+          opacity: 0,
+          duration: 1
+        });
+        ScrollTrigger.refresh();
+      });
+    }
+  }, []);
   return /* @__PURE__ */ jsx(
     "section",
     {
@@ -873,42 +879,32 @@ const WatchUsBuildSection = ({ videoUrl }) => {
                 href: "https://www.youtube.com/@BlazingAutomations",
                 target: "_blank",
                 rel: "noopener noreferrer",
-                className: "gradient-upstream text-center text-white font-work-sans flex font-semibold px-8 py-4 rounded-full hover-glow group transition-all duration-300",
+                className: "gradient-upstream text-center text-white font-work-sans flex font-semibold px-8 py-4 w-fit text-xl  rounded-full hover-glow group transition-all duration-300 items-center",
                 children: [
                   /* @__PURE__ */ jsx(Youtube, { className: "mr-2 w-5 h-5" }),
                   "Subscribe To Our Channel",
-                  /* @__PURE__ */ jsx("span", { className: "ml-2 bg-white/20 px-3 py-1 rounded-full text-sm", children: "Free" })
+                  /* @__PURE__ */ jsx("span", { className: "ml-2 bg-white/20 px-3 py-1 rounded-full text-sm text-green-700", children: "FREE" })
                 ]
               }
             ) })
           ] }),
-          /* @__PURE__ */ jsx("div", { ref: videoRef, className: "relative", children: !playVideo ? (
-            //  <iframe
-            //         src={embedUrl}
-            //         className="w-full h-full"
-            //         title="YouTube Video"
-            //         frameBorder="0"
-            //         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            //         allowFullScreen
-            //     ></iframe>
-            /* @__PURE__ */ jsx(
-              "div",
-              {
-                onClick: () => setPlayVideo(true),
-                className: "relative bg-card/20 backdrop-blur-sm border border-gray-text/20 rounded-xl overflow-hidden group cursor-pointer hover:border-light-blue/50 transition-all duration-300",
-                children: /* @__PURE__ */ jsx(
-                  YouTube,
-                  {
-                    videoId: "GAtrG74sl1E",
-                    options: {
-                      height: "400",
-                      width: "640",
-                      playerVars: { autoplay: 1, volume: 50 }
-                    }
+          /* @__PURE__ */ jsx("div", { ref: videoRef, className: "relative", children: !playVideo ? /* @__PURE__ */ jsx(
+            "div",
+            {
+              onClick: () => setPlayVideo(true),
+              className: "relative bg-card/20 backdrop-blur-sm border border-gray-text/20 rounded-xl overflow-hidden group cursor-pointer hover:border-light-blue/50 transition-all duration-300",
+              children: /* @__PURE__ */ jsx(
+                YouTube,
+                {
+                  videoId: "9tvUSxXrKnA",
+                  options: {
+                    height: "400",
+                    width: "640",
+                    playerVars: { autoplay: 1, volume: 50 }
                   }
-                )
-              }
-            )
+                }
+              )
+            }
           ) : /* @__PURE__ */ jsx("div", { className: "aspect-video rounded-xl overflow-hidden border border-gray-text/20", children: /* @__PURE__ */ jsx(
             "iframe",
             {
@@ -925,21 +921,20 @@ const WatchUsBuildSection = ({ videoUrl }) => {
     }
   );
 };
-gsap.registerPlugin(ScrollTrigger);
 const ResourcesSection = ({
   latest_resources
 }) => {
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const featuredRef = useRef(null);
-  const cardsRef = useRef(null);
+  useRef(null);
   const ctaRef = useRef(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedResource, setSelectedResource] = useState(null);
   const [email, setEmail] = useState("");
-  const { toast } = useToast();
+  useToast();
   const featuredResource = latest_resources[0];
-  const resources = latest_resources.slice(1).map((resource) => ({
+  latest_resources.slice(1).map((resource) => ({
     slug: resource.slug,
     title: resource.title,
     category: resource.category,
@@ -951,321 +946,177 @@ const ResourcesSection = ({
     fileUrl: resource.file_url
   }));
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse"
-        }
-      });
-      tl.from(titleRef.current, {
-        opacity: 0,
-        y: 50,
-        duration: 0.8,
-        ease: "power3.out"
-      }).from(
-        featuredRef.current,
-        {
-          opacity: 0,
-          y: 30,
-          duration: 0.6,
-          ease: "power3.out"
-        },
-        "-=0.4"
-      ).from(
-        ".resource-card",
-        {
-          opacity: 10,
-          y: 30,
-          duration: 0.6,
-          ease: "power3.out",
-          stagger: 0.1
-        },
-        "-=0.2"
-      ).from(
-        ctaRef.current,
-        {
-          opacity: 0,
-          y: 20,
-          duration: 0.6,
-          ease: "power3.out"
-        },
-        "-=0.3"
-      );
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
-  const handleDownloadNow = () => {
-    console.log("Downloading:", selectedResource.title);
-    toast({
-      title: "Download Started",
-      description: `${selectedResource.title} is being downloaded.`
-    });
-    setIsModalOpen(false);
-    setEmail("");
-  };
-  const handleSendEmail = () => {
-    if (!email) {
-      toast({
-        title: "Email Required",
-        description: "Please enter your email address.",
-        variant: "destructive"
-      });
-      return;
-    }
-    console.log(
-      "Sending to email:",
-      email,
-      "Resource:",
-      selectedResource.title
-    );
-    toast({
-      title: "Sent to Email",
-      description: `${selectedResource.title} has been sent to ${email}`
-    });
-    setIsModalOpen(false);
-    setEmail("");
-  };
-  return /* @__PURE__ */ jsxs("section", { id: "resources", ref: sectionRef, className: "py-28 px-4", children: [
-    /* @__PURE__ */ jsxs("div", { className: "max-w-6xl mx-auto", children: [
-      /* @__PURE__ */ jsxs("div", { className: "text-center mb-16", children: [
-        /* @__PURE__ */ jsxs(
-          "h2",
-          {
-            ref: titleRef,
-            className: "font-sora font-bold text-4xl md:text-5xl text-white mb-6",
-            children: [
-              "Download Our Latest",
-              " ",
-              /* @__PURE__ */ jsx("span", { className: "gradient-text", children: "AI Workflows" })
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsx("p", { className: "font-inter text-xl text-slate-text max-w-3xl mx-auto", children: "Get instant access to our proven automation templates and start building today." })
-      ] }),
-      /* @__PURE__ */ jsx("div", { ref: featuredRef, className: "mb-16", children: /* @__PURE__ */ jsxs(Card, { className: "relative bg-light-blue/50 backdrop-blur-sm border border-light-blue/30 overflow-hidden group hover:border-light-blue/60 transition-all duration-500", children: [
-        /* @__PURE__ */ jsx("div", { className: "absolute -top-6 -right-6 w-32 h-32 bg-light-blue/10 rounded-full blur-xl opacity-60" }),
-        /* @__PURE__ */ jsxs("div", { className: "relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 p-8", children: [
-          /* @__PURE__ */ jsxs("div", { className: "space-y-6", children: [
-            /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-3", children: [
-              /* @__PURE__ */ jsxs(Badge, { className: "bg-sunray/20 text-sunray border-sunray/30", children: [
-                /* @__PURE__ */ jsx(Star, { className: "w-3 h-3 mr-1" }),
-                "Featured"
-              ] }),
-              /* @__PURE__ */ jsx(
-                Badge,
-                {
-                  variant: "outline",
-                  className: "border-gray-text/30 text-slate-text",
-                  children: featuredResource.category.name
-                }
-              ),
-              /* @__PURE__ */ jsx(Badge, { className: "bg-green-500/20 text-green-400 border-green-500/30", children: "Free" })
-            ] }),
-            /* @__PURE__ */ jsxs("div", { children: [
-              /* @__PURE__ */ jsx("h3", { className: "font-space-grotesk font-bold text-2xl text-white mb-3", children: featuredResource.title }),
-              /* @__PURE__ */ jsx("p", { className: "text-slate-text leading-relaxed", children: featuredResource.description })
-            ] }),
-            /* @__PURE__ */ jsxs("div", { className: "flex gap-3", children: [
-              /* @__PURE__ */ jsxs(
-                Button,
-                {
-                  onClick: () => router.visit(
-                    route(
-                      "resources.show",
-                      featuredResource.slug
-                    )
-                  ),
-                  className: "gradient-upstream text-white font-work-sans font-semibold",
-                  children: [
-                    /* @__PURE__ */ jsx(Download, { className: "mr-2 w-4 h-4" }),
-                    "Download Free"
-                  ]
-                }
-              ),
-              /* @__PURE__ */ jsxs(
-                Button,
-                {
-                  variant: "outline",
-                  className: "border-light-blue text-light-blue hover:bg-light-blue hover:text-white",
-                  children: [
-                    /* @__PURE__ */ jsx(ExternalLink, { className: "mr-2 w-4 h-4" }),
-                    "View Details"
-                  ]
-                }
-              )
-            ] })
-          ] }),
-          /* @__PURE__ */ jsx("div", { className: "relative", children: /* @__PURE__ */ jsx("div", { className: "aspect-video rounded-lg overflow-hidden", children: /* @__PURE__ */ jsx(
-            "img",
-            {
-              src: `/storage/${featuredResource.thumbnail_path}`,
-              alt: featuredResource.title,
-              className: "w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+    if (typeof window !== "undefined") {
+      import("gsap/ScrollTrigger.js").then((mod) => {
+        const ScrollTrigger = mod.default || mod.ScrollTrigger;
+        gsap.registerPlugin(ScrollTrigger);
+        const ctx = gsap.context(() => {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 80%",
+              end: "bottom 20%",
+              toggleActions: "play none none reverse"
             }
-          ) }) })
-        ] })
-      ] }) }),
-      /* @__PURE__ */ jsx(
-        "div",
-        {
-          ref: cardsRef,
-          className: "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12",
-          children: resources.map((resource, index) => /* @__PURE__ */ jsxs(
-            Card,
+          });
+          tl.from(titleRef.current, {
+            opacity: 0,
+            y: 50,
+            duration: 0.8,
+            ease: "power3.out"
+          }).from(
+            featuredRef.current,
             {
-              className: "resource-card relative bg-light-blue/25 backdrop-blur-sm border border-gray-text/20 overflow-hidden hover:border-light-blue/50 transition-all duration-300 hover:scale-105 group cursor-pointer",
-              children: [
-                /* @__PURE__ */ jsxs("div", { className: "aspect-square relative overflow-hidden", children: [
-                  /* @__PURE__ */ jsx(
-                    "img",
-                    {
-                      src: `/storage/${resource.image}`,
-                      alt: resource.title,
-                      className: "w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    }
-                  ),
-                  /* @__PURE__ */ jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" }),
-                  /* @__PURE__ */ jsxs("div", { className: "absolute top-3 left-3 flex gap-2", children: [
-                    /* @__PURE__ */ jsx(
-                      Badge,
-                      {
-                        variant: "outline",
-                        className: "text-xs bg-black/50 border-white/20 text-white backdrop-blur-sm",
-                        children: resource.category.name
-                      }
-                    ),
-                    /* @__PURE__ */ jsx(
-                      Badge,
-                      {
-                        className: `text-xs ${resource.isPaid ? "bg-sunray/20 text-sunray border-sunray/30" : "bg-green-500/20 text-green-400 border-green-500/30"}`,
-                        children: resource.isPaid ? "Pro" : "Free"
-                      }
-                    )
-                  ] }),
-                  /* @__PURE__ */ jsx("div", { className: "absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center", children: /* @__PURE__ */ jsxs(
-                    Button,
-                    {
-                      size: "sm",
-                      onClick: () => router.visit(
-                        route("resources.show", {
-                          resource: resource.slug
-                        })
-                      ),
-                      className: "bg-light-blue hover:bg-light-blue/80 text-white font-work-sans",
-                      children: [
-                        /* @__PURE__ */ jsx(Download, { className: "mr-2 w-3 h-3" }),
-                        "Download"
-                      ]
-                    }
-                  ) })
-                ] }),
-                /* @__PURE__ */ jsxs("div", { className: "p-4", children: [
-                  /* @__PURE__ */ jsx("h3", { className: "font-space-grotesk font-semibold text-white text-sm mb-2 line-clamp-2", children: resource.title }),
-                  /* @__PURE__ */ jsx("p", { className: "text-slate-text text-xs mb-3 line-clamp-2", children: resource.description }),
-                  /* @__PURE__ */ jsxs("div", { className: "flex gap-2", children: [
-                    /* @__PURE__ */ jsx(
-                      Button,
-                      {
-                        size: "sm",
-                        onClick: () => router.visit(
-                          route(
-                            "resources.show",
-                            resource.slug
-                          )
-                        ),
-                        className: "flex-1 bg-light-blue/20 hover:bg-light-blue text-light-blue hover:text-white text-xs border border-light-blue/30",
-                        children: "Download"
-                      }
-                    ),
-                    /* @__PURE__ */ jsx(
-                      Button,
-                      {
-                        size: "sm",
-                        variant: "ghost",
-                        className: "text-slate-text hover:gradient-upstream text-xs",
-                        children: /* @__PURE__ */ jsx(ExternalLink, { className: "w-3 h-3" })
-                      }
-                    )
-                  ] })
-                ] })
-              ]
+              opacity: 0,
+              y: 30,
+              duration: 0.6,
+              ease: "power3.out"
             },
-            resource.title
-          ))
-        }
-      ),
-      /* @__PURE__ */ jsx("div", { ref: ctaRef, className: "text-center", children: /* @__PURE__ */ jsxs(
-        Button,
+            "-=0.4"
+          ).from(
+            ".resource-card",
+            {
+              opacity: 0,
+              y: 30,
+              duration: 0.6,
+              ease: "power3.out",
+              stagger: 0.1
+            },
+            "-=0.2"
+          ).from(
+            ctaRef.current,
+            {
+              opacity: 0,
+              y: 20,
+              duration: 0.6,
+              ease: "power3.out"
+            },
+            "-=0.3"
+          );
+        }, sectionRef);
+        return () => ctx.revert();
+      });
+    }
+  }, []);
+  return /* @__PURE__ */ jsx("section", { id: "resources", ref: sectionRef, className: "py-28 px-4", children: /* @__PURE__ */ jsxs("div", { className: "max-w-6xl mx-auto", children: [
+    /* @__PURE__ */ jsxs("div", { className: "text-center mb-16", children: [
+      /* @__PURE__ */ jsxs(
+        "h2",
         {
-          onClick: () => router.visit(route("resources.index")),
-          className: "gradient-upstream text-white font-work-sans font-semibold px-8 py-4 rounded-full hover-glow",
+          ref: titleRef,
+          className: "font-sora font-bold text-4xl md:text-5xl text-white mb-6",
           children: [
-            "View More Templates",
-            /* @__PURE__ */ jsx(ExternalLink, { className: "ml-2 w-4 h-4" })
+            "Download Our Latest",
+            " ",
+            /* @__PURE__ */ jsx("span", { className: "gradient-text", children: "AI Workflows" })
           ]
         }
-      ) })
+      ),
+      /* @__PURE__ */ jsx("p", { className: "font-inter text-xl text-slate-text max-w-3xl mx-auto", children: "Get instant access to our proven automation templates and start building today." })
     ] }),
-    /* @__PURE__ */ jsx(Dialog, { open: isModalOpen, onOpenChange: setIsModalOpen, children: /* @__PURE__ */ jsxs(DialogContent, { className: "bg-card border-gray-text/20", children: [
-      /* @__PURE__ */ jsx(DialogHeader, { children: /* @__PURE__ */ jsxs(DialogTitle, { className: "text-white font-sora", children: [
-        "Download ",
-        selectedResource == null ? void 0 : selectedResource.title
-      ] }) }),
-      /* @__PURE__ */ jsxs("div", { className: "space-y-4", children: [
-        /* @__PURE__ */ jsxs("div", { children: [
-          /* @__PURE__ */ jsx("label", { className: "block text-slate-text font-work-sans mb-2", children: "Email Address" }),
-          /* @__PURE__ */ jsx(
-            Input,
-            {
-              type: "email",
-              value: email,
-              onChange: (e) => setEmail(e.target.value),
-              placeholder: "your@email.com",
-              className: "bg-background/50 border-gray-text/30 text-midnight-blue"
-            }
-          )
+    /* @__PURE__ */ jsx("div", { ref: featuredRef, className: "mb-16", children: /* @__PURE__ */ jsxs(Card, { className: "relative bg-light-blue/50 backdrop-blur-sm border border-light-blue/30 overflow-hidden group hover:border-light-blue/60 transition-all duration-500", children: [
+      /* @__PURE__ */ jsx("div", { className: "absolute -top-6 -right-6 w-32 h-32 bg-light-blue/10 rounded-full blur-xl opacity-60" }),
+      /* @__PURE__ */ jsxs("div", { className: "relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 p-8", children: [
+        /* @__PURE__ */ jsxs("div", { className: "space-y-6", children: [
+          /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-3", children: [
+            /* @__PURE__ */ jsxs(Badge, { className: "bg-sunray/20 text-sunray border-sunray/30", children: [
+              /* @__PURE__ */ jsx(Star, { className: "w-3 h-3 mr-1" }),
+              "Featured"
+            ] }),
+            /* @__PURE__ */ jsx(
+              Badge,
+              {
+                variant: "outline",
+                className: "border-gray-text/30 text-slate-text",
+                children: featuredResource.category.name
+              }
+            ),
+            /* @__PURE__ */ jsx(Badge, { className: "bg-green-500/20 text-green-400 border-green-500/30", children: "Free" })
+          ] }),
+          /* @__PURE__ */ jsxs("div", { children: [
+            /* @__PURE__ */ jsx("h3", { className: "font-space-grotesk font-bold text-2xl text-white mb-3", children: featuredResource.title }),
+            /* @__PURE__ */ jsx("p", { className: "text-slate-text leading-relaxed", children: featuredResource.description })
+          ] }),
+          /* @__PURE__ */ jsxs("div", { className: "flex gap-3", children: [
+            /* @__PURE__ */ jsxs(
+              Button,
+              {
+                onClick: () => router.visit(
+                  route(
+                    "resources.show",
+                    featuredResource.slug
+                  )
+                ),
+                className: "gradient-upstream text-white font-work-sans font-semibold",
+                children: [
+                  /* @__PURE__ */ jsx(Download, { className: "mr-2 w-4 h-4" }),
+                  "Download Free"
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsx(
+              Button,
+              {
+                variant: "outline",
+                className: "border-light-blue text-light-blue hover:bg-light-blue hover:text-white",
+                children: /* @__PURE__ */ jsxs(
+                  "a",
+                  {
+                    href: `#`,
+                    className: "flex items-center",
+                    children: [
+                      /* @__PURE__ */ jsx(Video, { className: "mr-2 w-4 h-4" }),
+                      "Watch Setup Guide"
+                    ]
+                  }
+                )
+              }
+            )
+          ] })
         ] }),
-        /* @__PURE__ */ jsxs("div", { className: "flex gap-3", children: [
-          /* @__PURE__ */ jsxs(
-            Button,
-            {
-              onClick: handleDownloadNow,
-              className: "flex-1 gradient-upstream text-white font-work-sans font-semibold",
-              children: [
-                /* @__PURE__ */ jsx(Check, { className: "mr-2 w-4 h-4" }),
-                "Download Now"
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxs(
-            Button,
-            {
-              onClick: handleSendEmail,
-              variant: "outline",
-              className: "flex-1 border-light-blue text-light-blue hover:bg-light-blue hover:text-white",
-              children: [
-                /* @__PURE__ */ jsx(Mail, { className: "mr-2 w-4 h-4" }),
-                "Send to Email"
-              ]
-            }
-          )
-        ] })
+        /* @__PURE__ */ jsx("div", { className: "relative", children: /* @__PURE__ */ jsx("div", { className: "aspect-video rounded-lg overflow-hidden", children: /* @__PURE__ */ jsx(
+          "img",
+          {
+            src: `/storage/${featuredResource.thumbnail_path}`,
+            alt: featuredResource.title,
+            className: "w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          }
+        ) }) })
       ] })
-    ] }) })
-  ] });
+    ] }) }),
+    /* @__PURE__ */ jsx("div", { ref: ctaRef, className: "text-center", children: /* @__PURE__ */ jsx(
+      Button,
+      {
+        onClick: () => router.visit(route("resources.index")),
+        className: "gradient-upstream text-white font-work-sans font-semibold px-8 py-4 rounded-full hover-glow",
+        children: "View More Templates..."
+      }
+    ) })
+  ] }) });
 };
-function Home({
-  auth,
-  laravelVersion,
-  phpVersion
-}) {
+function Home() {
   const { props } = usePage();
-  console.log("props", props);
+  const { auth, flash } = props;
+  const { toast } = useToast();
+  useEffect(() => {
+    if (flash == null ? void 0 : flash.message) {
+      toast({
+        title: `${flash == null ? void 0 : flash.message}`
+      });
+      flash.message = null;
+    }
+  }, [flash, toast]);
   return /* @__PURE__ */ jsxs(Fragment, { children: [
-    /* @__PURE__ */ jsx(Head, { title: "Home" }),
+    /* @__PURE__ */ jsxs(Head, { children: [
+      /* @__PURE__ */ jsx("title", { children: "Home" }),
+      /* @__PURE__ */ jsx(
+        "meta",
+        {
+          name: "description",
+          content: "Blazing Automations helps you achieve your goals with smart AI agents, automation workflows, and custom web development solutions. Build the systems your business needs to grow."
+        }
+      )
+    ] }),
     /* @__PURE__ */ jsxs("div", { className: "min-h-screen bg-midnight-blue overflow-hidden", children: [
       /* @__PURE__ */ jsx(Hero, {}),
       /* @__PURE__ */ jsx(ToolsMarquee, {}),

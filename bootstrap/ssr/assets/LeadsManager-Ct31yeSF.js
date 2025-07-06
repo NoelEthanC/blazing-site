@@ -6,7 +6,7 @@ import { T as Table, a as TableHeader, b as TableRow, c as TableHead, d as Table
 import { I as Input } from "./input-zTnVlpte.js";
 import { B as Button } from "./button-wnFVC-UW.js";
 import { Download, Search, ChevronLeft, ChevronRight } from "lucide-react";
-import { A as AdminControlLayout } from "./AdminControlLayout-C8TFqy39.js";
+import { A as AdminControlLayout } from "./AdminControlLayout-CvklES1f.js";
 import "./utils-CYs7COny.js";
 import "clsx";
 import "tailwind-merge";

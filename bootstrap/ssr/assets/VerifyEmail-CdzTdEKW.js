@@ -1,9 +1,9 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import { P as PrimaryButton } from "./PrimaryButton-DDF1xnxF.js";
-import { G as GuestLayout } from "./GuestLayout-DSwAePEQ.js";
+import { G as GuestLayout } from "./GuestLayout-CH4uyFw4.js";
 import { useForm, Head, Link } from "@inertiajs/react";
 import "lucide-react";
-import "./Navbar-D2514n6l.js";
+import "./Navbar-BssyNonJ.js";
 import "react";
 import "./button-wnFVC-UW.js";
 import "@radix-ui/react-slot";

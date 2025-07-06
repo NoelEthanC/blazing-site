@@ -5,7 +5,7 @@ import type React from "react";
 import { useState, useEffect } from "react";
 import { Button } from "@/Components/ui/button";
 import { Input } from "@/Components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Label } from "@/Components/ui/label";
 import { Textarea } from "@/Components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/Components/ui/card";
 import {
@@ -371,6 +371,7 @@ export function BlogManager() {
                                                     post.published
                                                 )
                                             }
+                                            //@ts-ignore
                                             size="sm"
                                         />
                                         <Badge

@@ -6,7 +6,7 @@ import { C as Card, b as CardHeader, c as CardTitle, a as CardContent } from "./
 import { T as Table, a as TableHeader, b as TableRow, c as TableHead, d as TableBody, e as TableCell } from "./table-BdnOopEi.js";
 import { B as Badge } from "./badge-CGZGM-oT.js";
 import { Plus, Download, Edit, Trash2, ChevronLeft, ChevronRight } from "lucide-react";
-import { A as AdminControlLayout } from "./AdminControlLayout-C8TFqy39.js";
+import { A as AdminControlLayout } from "./AdminControlLayout-CvklES1f.js";
 import "@radix-ui/react-slot";
 import "class-variance-authority";
 import "./utils-CYs7COny.js";

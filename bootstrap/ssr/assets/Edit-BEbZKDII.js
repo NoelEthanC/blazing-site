@@ -1,13 +1,13 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import { A as Authenticated } from "./AuthenticatedLayout-BvNVYuhQ.js";
 import { Head } from "@inertiajs/react";
-import DeleteUserForm from "./DeleteUserForm-CRyoRFsl.js";
-import UpdatePasswordForm from "./UpdatePasswordForm-5tiidph4.js";
-import UpdateProfileInformation from "./UpdateProfileInformationForm-DLc8-kkN.js";
+import DeleteUserForm from "./DeleteUserForm-B8sxIPbT.js";
+import UpdatePasswordForm from "./UpdatePasswordForm-fRaGwjAh.js";
+import UpdateProfileInformation from "./UpdateProfileInformationForm-DKMfiuO5.js";
 import "@headlessui/react";
 import "react";
-import "./TextInput-CfTqIySL.js";
-import "./InputLabel-DDs2XNYP.js";
+import "./TextInput-D1yy7HiT.js";
+import "./InputLabel-3sCNhFCz.js";
 import "./PrimaryButton-DDF1xnxF.js";
 function Edit({
   mustVerifyEmail,

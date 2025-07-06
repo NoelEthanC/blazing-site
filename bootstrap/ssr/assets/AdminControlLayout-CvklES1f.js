@@ -170,7 +170,6 @@ function AdminControlLayout({
   const { auth, flash } = props;
   const { toast } = useToast();
   const defaultTab = url.split("/").pop() || "overview";
-  console.log("url", url.split("/").pop());
   useEffect(() => {
     if (flash.success) {
       toast({

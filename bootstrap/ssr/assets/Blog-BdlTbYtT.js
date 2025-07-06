@@ -5,7 +5,7 @@ import { B as Badge } from "./badge-CGZGM-oT.js";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 import { Link } from "@inertiajs/react";
-import { N as Navbar } from "./Navbar-D2514n6l.js";
+import { N as Navbar } from "./Navbar-BssyNonJ.js";
 import "./utils-CYs7COny.js";
 import "clsx";
 import "tailwind-merge";

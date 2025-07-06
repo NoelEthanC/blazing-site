@@ -1,7 +1,7 @@
 import { jsxs, jsx } from "react/jsx-runtime";
 import { Head } from "@inertiajs/react";
 import { A as Authenticated } from "./AuthenticatedLayout-BvNVYuhQ.js";
-import { A as AdminControlLayout } from "./AdminControlLayout-C8TFqy39.js";
+import { A as AdminControlLayout } from "./AdminControlLayout-CvklES1f.js";
 import "@headlessui/react";
 import "react";
 import "@radix-ui/react-tabs";
