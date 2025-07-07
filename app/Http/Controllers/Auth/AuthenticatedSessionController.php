@@ -27,18 +27,21 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(LoginRequest $request)
     {
-        dd('received XSRF:', [
-            'cookie' => request()->cookie('XSRF-TOKEN'),
-            'header' => request()->header('X-XSRF-TOKEN'),
-            'body' => request('_token'),
-        ]);
+        // dd('received XSRF:', [
+        //     'cookie' => request()->cookie('XSRF-TOKEN'),
+        //     'header' => request()->header('X-XSRF-TOKEN'),
+        //     'body' => request('_token'),
+        // ]);
         $request->authenticate();
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('admin.overview', absolute: false));
+        // return redirect()->intended(route('admin.overview', absolute: false));
+        return to_route('admin.overview');
+        // return Inertia::location(route('admin.overview'));
+        // return 
     }
 
     /**
