@@ -19,7 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
         $middleware->trustProxies(
             at: '*', // Or the IP of your proxy/load balancer
-            headers: SymfonyRequest::HEADER_FORWARDED
+            // headers: SymfonyRequest::HEADER_FORWARDED
         );
         //
     })
