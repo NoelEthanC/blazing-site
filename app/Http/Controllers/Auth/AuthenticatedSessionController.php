@@ -39,7 +39,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         // return redirect()->intended(route('admin.overview', absolute: false));
-        return to_route('admin.overview');
+        return inertia('admin.overview');
         // return Inertia::location(route('admin.overview'));
         // return 
     }
