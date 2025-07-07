@@ -29,6 +29,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        dd('received XSRF:', [
+            'cookie' => request()->cookie('XSRF-TOKEN'),
+            'header' => request()->header('X-XSRF-TOKEN'),
+            'body' => request('_token'),
+        ]);
         $request->authenticate();
 
         $request->session()->regenerate();

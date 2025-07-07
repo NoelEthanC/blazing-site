@@ -28,10 +28,8 @@ export default function Authenticated({
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink
-                                    href={route("admin.dashboard.overview")}
-                                    active={route().current(
-                                        "admin.dashboard.overview"
-                                    )}
+                                    href={route("admin.overview")}
+                                    active={route().current("admin.overview")}
                                 >
                                     Dashboard
                                 </NavLink>
@@ -134,8 +132,8 @@ export default function Authenticated({
                 >
                     <div className="space-y-1 pb-3 pt-2">
                         <ResponsiveNavLink
-                            href={route("admin.dashboard.overview")}
-                            active={route().current("admin.dashboard.overview")}
+                            href={route("admin.overview")}
+                            active={route().current("admins.overview")}
                         >
                             Dashboard
                         </ResponsiveNavLink>
