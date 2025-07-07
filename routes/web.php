@@ -30,7 +30,7 @@ Route::get('/blog', function () {
 });
 
 
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
+Route::prefix('admin')->name('admin.')->group(function () {
     // overview dashboard routes
     Route::get('/overview', [AdminDashboardController::class, 'index'])->name('overview');
 
